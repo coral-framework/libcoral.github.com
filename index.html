@@ -1,1 +1,65 @@
-Test
+---
+layout: base
+---
+
+<div id="top" class="clearfloat">
+	<div id="headline">
+		{% for post in site.categories.news %}{% if post.headlined %}
+		<div class="title"><a href="{{ post.url }}" rel="bookmark">{{ post.title }}</a></div>
+		<div class="meta">{{ post.date | date: '%A, %B %d, %Y' }}</div>
+		<div class="excerpt">
+			{% if post.picture %}
+			<a href="{{ post.url }}" rel="bookmark"><img src="{{post.picture}}" class="left" width="300px" height="275px" /></a>
+			{% endif %}
+			{{ post.content | truncatewords: 60 }}
+			<p><a href="{{ post.url }}" rel="bookmark">Read the full story &raquo;</a></p>
+		</div>
+		{% endif %}{% endfor %}
+	</div>
+
+	<div id="sidebar">
+		<div id="sidebar1" style="margin-top: 0; background: #F4FCE5">
+			{% for latest in site.categories.releases limit:1 %}
+			<p>Latest release ({{ latest.date | date: '%B %d, %Y' }}): <b>{{ latest.version }}</b></p>
+			<p><a href="{{ latest.url }}" title="{{ latest.title }}">Release Notes</a></p>
+			{% endfor %}
+		</div>
+
+		<div id="sidebar1">
+			<h3>What is Coral?</h3>
+			<p>In a nutshell what is Coral?</p>
+		</div>
+	</div>
+</div>
+
+<div id="middle" class="clearfloat">
+	{% for feature in site.features %}
+	<div id="cat-{{ forloop.index }}" class="category">
+		<span class="cat_title"><a href="/features/#{{ feature.key }}">{{ feature.title }}</a></span>
+		<a href="/features/#{{ feature.key }}">{{ feature.description }}</a>
+	</div>
+	{% endfor %}
+</div>
+
+<div id="bottom" class="clearfloat">
+	<div id="front-list">
+		<h3 class="cat_title">More News &raquo</h3>
+
+		{% for post in site.categories.news %}{% unless post.headlined %}
+		<div class="clearfloat">
+			<div class="title"><a href="{{ post.url }}" rel="bookmark">{{ post.title }}</a></div>
+			<div class="meta">{{ post.date | date: '%A, %B %d, %Y' }}</div>
+			<div class="excerpt">
+				{% if post.picture %}
+				<a href="{{ post.url }}" rel="bookmark"><img src="{{post.picture}}" class="left" width="150px" height="150px" /></a>
+				{% endif %}
+				{{ post.content | truncatewords: 30 }}
+				<p><a href="{{ post.url }}" rel="bookmark">Read the full story &raquo;</a></p>
+			</div>
+		</div>
+		{% endunless %}{% endfor %}
+
+	</div>
+
+	{% include sidebar %}
+</div>

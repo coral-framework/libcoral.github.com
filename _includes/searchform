@@ -1,0 +1,11 @@
+<form action="/search.html" id="cse-search-box">
+  <div>
+    <input type="hidden" name="cx" value="005797618250442281082:jvrcrowp5ek" />
+    <input type="hidden" name="cof" value="FORID:10" />
+    <input type="hidden" name="ie" value="UTF-8" />
+    <input type="text" name="q" id="s" size="31" />
+    <input type="hidden" name="sa" value="Search" />
+    <input type="image" src="/images/magnify.gif" id="searchsubmit" />
+  </div>
+</form>
+<script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&lang=en"></script>

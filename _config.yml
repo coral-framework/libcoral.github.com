@@ -1,0 +1,36 @@
+#
+# Jekyll configuration
+#
+safe:        true
+auto:        true
+server:      true
+pygments:    true
+permalink:   date
+
+#
+# Site configuration
+#
+url:          http://libcoral.org
+title:        Coral
+description:  A lightweight C++ component platform for soft real-time systems.
+keywords:     coral, c++, component, framework, development, platform, portable, lightweight,
+              real-time, extensible, introspection, reflection, compiler, lua, script, plug-in,
+              plugin, modules, mac, osx, macosx, linux, windows
+analytics_id: UA-813587-3
+
+#
+# Features
+#
+features:
+  - { key: feat1, title: Feature 1, description: Desc 1 }
+  - { key: feat2, title: Feature 2, description: Desc 2 }
+  - { key: feat3, title: Feature 3, description: Desc 3 }
+  - { key: feat4, title: Feature 4, description: Desc 4 }
+  - { key: feat5, title: Feature 5, description: Desc 5 }
+
+#
+# Modules
+#
+modules:
+  - { name: lua, title: Lua Module, description: The Lua Module }
+  - { name: qt, title: Qt Module, description: The Qt Module }

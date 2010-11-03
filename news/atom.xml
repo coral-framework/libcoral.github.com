@@ -1,0 +1,4 @@
+---
+layout: nil
+---
+{% assign self = '/news/atom.xml' %}{% assign posts = site.categories.news %}{% include atom %}

@@ -1,0 +1,16 @@
+<span class="breadcrumbs">{{ posts.first.categories.first }} &raquo;</span>
+
+<div id="archive">
+	{% for post in posts %}
+	<div class="clearfloat">
+		<div class="title"><a href="{{ post.url }}" rel="bookmark">{{ post.title }}</a></div>
+		<div class="meta">{{ post.date | date: '%A, %B %d, %Y' }}</div>
+		<div class="excerpt">
+			{% if post.picture %}
+			<a href="{{ post.url }}" rel="bookmark"><img src="{{post.picture}}" class="left" width="150px" height="150px" /></a>
+			{% endif %}
+			{{ post.content | truncatewords: 30 }}
+		</div>
+	</div>
+	{% endfor %}
+</div>
