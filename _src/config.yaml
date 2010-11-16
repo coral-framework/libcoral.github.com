@@ -1,0 +1,18 @@
+---
+
+base_url: http://libcoral.org
+
+title: Coral - A lightweight C++ component framework
+
+modules:
+  - {name: lua, title: Lua Module, description: The Lua Module}
+  - {name: qt, title: Qt Module, description: The Qt Module}
+
+excerpt_maxlen: 300
+
+output_dir: ..
+
+data_sources:
+  - type: filesystem_unified
+    items_root: /
+    layouts_root: /

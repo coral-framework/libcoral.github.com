@@ -1,0 +1,257 @@
+@import "compass/css3";
+@import "compass/utilities/lists/horizontal-list";
+@import "compass/utilities/links/hover-link";
+@import "compass/utilities/tables/alternating-rows-and-columns";
+
+body {
+	background: #E6E7E8;
+
+	@include blueprint-typography-body( 13px );
+	@include blueprint-typography-defaults;
+
+	// reset 'tr.even', introduced by blueprint-typography-defaults (doh)
+	tr.even td { background: transparent; }
+
+	a { @include hover-link; }
+	p { margin-bottom: 0.8em; }
+}
+
+.error {
+	@include error;
+	@include border-radius( 6px );
+}
+
+.notice {
+	@include notice;
+	@include border-radius( 6px );
+}
+
+.success {
+	@include success;
+	@include border-radius( 6px );
+}
+
+.highlight {
+	@include highlight;
+	@include border-radius( 6px );
+}
+
+.added {
+	@include added;
+	@include border-radius( 6px );
+}
+
+.removed {
+	@include removed;
+	@include border-radius( 6px );
+}
+
+table {
+	width: 100%;
+	border: 1px solid #C4CFE5;
+	@include border-radius( 6px );
+	td, th { padding: 6px 8px; }
+	th { background: $blueprint-table-header-color; }
+	tr.even td { background: $blueprint-table-stripe-color; }
+}
+
+code {
+	color: #333;
+	padding: 0px 0.2em;
+	border: 1px solid #E6E6E6;
+	background: #F6F6F6;
+}
+
+pre {
+	color: #333;
+	margin: 1em 0px;
+	padding: 0.5em 1em;
+	background: #F6F6F6;
+	border: 1px solid #E6E6E6;
+	@include border-radius( 6px );
+}
+
+@mixin panel {
+	margin: 18px 6px;
+	background: #FFFFFF;
+	@include border-radius( 9px );
+	@include box-shadow( #CCC, 0px, 0px, 5px, 1px );
+}
+
+.panel {
+	@include panel;
+}
+
+#releasepanel {
+	@include panel;
+	padding: 12px 18px;
+	background: $success_bg_color;
+	border: 1px solid $success_border_color;
+	#title {
+		color: $success_color;
+		font-size: 18px;
+	}
+	#stable { margin-top: 7px; }
+	#dev { margin-top: 8px; font-size: 11px; }
+}
+
+#sidepanel {
+	padding: 0px;
+	@include panel;
+
+	#title {
+		color: white;
+		font-size: 18px;
+		margin: 0px;
+		padding: 7px 17px;
+		@include gradient-blue;
+		@include border-top-radius( 9px );
+	}
+
+	#content {
+		padding: 7px 17px;
+	}
+
+	ul { padding-left: 18px; }
+}
+
+#logotitle {
+	float: left;
+	z-index: 2;
+	position: absolute;
+	a:hover{ text-decoration: none; }
+	h1 {
+		padding: 18px 0px 0px 8px;
+		color: $link-color;
+		font-size: 45px;
+		font-family: $font-family-arial;
+	}
+}
+
+#navtr {
+	float: right;
+	padding: 8px;
+	ul {
+		font-size: 15px;
+		font-weight: bolder;
+		a, a:visited { color: #B4B4B4; }
+		a:hover { color: $link-color; text-decoration: none; }
+		@include horizontal-list( 15px );
+	}
+	li.selected {
+		a { color: $link-color; }
+	}
+}
+
+#nav {
+	float: left;
+	z-index: 1;
+	position: absolute;
+	margin: 78px 0px 0px 150px;
+	ul {
+		font-weight: bolder;
+		a { color: $font-color; text-decoration: none; }
+		a:hover { color: $link-color; }
+		@include horizontal-list( 15px );
+	}
+	#selected {
+		top: -19px;
+		position: relative;
+		border-bottom: 4px solid #B5D5FF;
+		#text { visibility: hidden; }
+	}
+}
+
+#search {
+	float: right;
+	clear: right;
+	margin: 36px 8px 0px 0px;
+}
+
+#navfoot {
+	font-size: 11px;
+	font-weight: bold;
+	font-family: $font-family-arial;
+	border-top: #0D398E solid 1px;
+	border-bottom: #0D398E solid 1px;
+	@include gradient-blue;
+	@include linear-gradient( color-stops( #444, #333 ) );
+	border-top: black solid 1px;
+	border-bottom: black solid 1px;
+
+	ul {
+		width: 15%;
+		float: left;
+		margin: 30px 0px 30px 30px;
+		padding: 0px;
+		list-style: none;
+	}
+
+	a { color: white; }
+
+	li.title {
+		color: #8DBDFF;
+		font-size: 14px;
+	}
+	a.feed {
+		display: block;
+		padding: 1px 0 5px 24px;
+		background: url(/images/icon-feed.png) no-repeat left top;
+	}
+}
+
+#copyright {
+  color: #666;
+  font-size: 10px;
+  padding: 15px;
+  text-align: center;
+}
+
+#featurespanel {
+	margin: 18px 6px 0px 6px;
+	padding: 15px 30px;
+	color: white;
+	@include border-top-left-radius( 24px );
+	@include border-bottom-right-radius( 24px );
+	@include gradient-blue;
+	h2 { color: white; text-align: center; margin-bottom: 6px; line-height: 30px; }
+}
+
+#article {
+	h1 {
+		color: $link-color;
+		font-size: 27px;
+		font-weight: bold;
+		font-family: $font-family-arial;
+		margin-bottom: 3px;
+	}
+	a { color: $link-color; }
+	p.meta {
+		font-size: 11px;
+		letter-spacing: 1px;
+		margin-bottom: 18px;
+	}
+	p.tags {
+		font-size: 11px;
+	}
+	#separator {
+		margin: 18px 0px;
+		border-bottom: 1px solid #eee;
+	}
+}
+
+#module {
+	img { float:left; }
+	#info { float: left; padding: 6px; }
+	.title { font-size: 18px; }
+	#separator { clear: both; }
+}
+
+.mapping-down-arrow {
+	z-index: 2;
+	position: relative;
+	width: 55px;
+	height: 45px;
+	margin: -24px auto -39px auto;
+	background: url('../images/arrow-down.png');
+}

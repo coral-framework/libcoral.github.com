@@ -1,0 +1,16 @@
+- render 'base' do
+	#left-column
+		#content.panel
+			=yield
+	#right-column
+		#sidepanel
+			#title Tags
+			#content
+				- require 'set'
+				- tags = Set.new
+				- articles.each { |a| tags.merge( a[:tags] ) }
+				- tags = tags.to_a.sort!
+				%ul
+					- tags.each do |tag|
+						%li
+							%a(href="/tags/#{tag}/")= tag

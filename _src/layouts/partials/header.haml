@@ -1,0 +1,29 @@
+#container
+	#fullwidth
+		#logotitle
+			%a(href="http://libcoral.org/")
+				%h1 Coral
+		#navtr
+			%ul
+				%li(class='selected')
+					%a(href="http://libcoral.org/" title="Coral Home") Coral HOME
+				%li
+					%a(href="http://doc.libcoral.org/latest/" title="Coral Reference Documentation") DOC
+				%li
+					%a(href="http://doc.libcoral.org/latest/api/" title="Coral API Documentation") API
+		#nav
+			%ul
+				= nav_item( "HOME", "/", /^\/$/ )
+				= nav_item( "FEATURES", "/features.html" )
+				= nav_item( "MODULES", "/modules/" )
+				= nav_item( "NEWS", "/news/" )
+				= nav_item( "DOWNLOADS", "/downloads.html" )
+				= nav_item( "ABOUT", "/about.html" )
+		#search
+			%form(action="/search.html" id="cse-search-box")
+				%input(type="hidden" name="cx" value="005797618250442281082:jvrcrowp5ek")
+				%input(type="hidden" name="cof" value="FORID:9")
+				%input(type="hidden" name="ie" value="UTF-8")
+				%input(type="text" name="q" size="21")
+				%input(type="submit" name="sa" value="Search")
+			%script(type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&lang=en")

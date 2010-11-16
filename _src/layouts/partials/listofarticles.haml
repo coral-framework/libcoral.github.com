@@ -1,0 +1,23 @@
+- limit = 30 if not limit
+- numShown = [limit, articles.length].min()
+- articles.each_with_index do |article, idx|
+	- if idx >= numShown then break
+	#article
+		%h1= link_to( article[:title], article )
+		= article_meta( article )
+		- content = article.compiled_content()
+		- needsReadMore = true
+		- if article[:excerpt] then
+			- excerpt = article[:excerpt]
+		- else
+			- if content.length < @config[:excerpt_maxlen] then
+				- excerpt = content
+				- needsReadMore = false
+			- else
+				- excerpt = excerptize( strip_html( content ), :length => @config[:excerpt_maxlen] )
+		= excerpt
+		- if needsReadMore then
+			%p= link_to( "[click to continue...]", article )
+		= article_tags( article )
+		#separator
+%small Showing the #{numShown} most recent articles (out of #{sorted_articles.length}).

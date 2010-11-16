@@ -1,23 +1,67 @@
----
-layout: nil
----
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset 
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">   
-  
-<url>
-  <loc>{{ site.url }}</loc>
-    <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
-  
-  {% for post in site.posts %}
+<urlset xmlns="http://www.google.com/schemas/sitemap/0.84">
   <url>
-    <loc>{{ site.url }}{{ post.url }}</loc>
-    <lastmod>{{ site.time }}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.2</priority>
+    <loc>http://libcoral.org/news/2010/11/16/coral-website-launched.html</loc>
+    <lastmod>2010-11-16</lastmod>
   </url>
-  {% endfor %}
+  <url>
+    <loc>http://libcoral.org/modules/</loc>
+    <lastmod>2010-11-15</lastmod>
+  </url>
+  <url>
+    <loc>http://libcoral.org/news/</loc>
+    <lastmod>2010-11-16</lastmod>
+  </url>
+  <url>
+    <loc>http://libcoral.org/downloads.html</loc>
+    <lastmod>2010-11-15</lastmod>
+  </url>
+  <url>
+    <loc>http://libcoral.org/modules/qt.html</loc>
+    <lastmod>2010-11-16</lastmod>
+  </url>
+  <url>
+    <loc>http://libcoral.org/about.html</loc>
+    <lastmod>2010-11-15</lastmod>
+  </url>
+  <url>
+    <loc>http://libcoral.org/404.html</loc>
+    <lastmod>2010-11-15</lastmod>
+  </url>
+  <url>
+    <loc>http://libcoral.org/tags/website/</loc>
+    <lastmod>2010-11-16</lastmod>
+  </url>
+  <url>
+    <loc>http://libcoral.org/releases/coral/0.5.0.html</loc>
+    <lastmod>2010-11-16</lastmod>
+  </url>
+  <url>
+    <loc>http://libcoral.org/tags/coral/</loc>
+    <lastmod>2010-11-16</lastmod>
+  </url>
+  <url>
+    <loc>http://libcoral.org/modules/lua.html</loc>
+    <lastmod>2010-11-16</lastmod>
+  </url>
+  <url>
+    <loc>http://libcoral.org/</loc>
+    <lastmod>2010-11-16</lastmod>
+  </url>
+  <url>
+    <loc>http://libcoral.org/features.html</loc>
+    <lastmod>2010-11-15</lastmod>
+  </url>
+  <url>
+    <loc>http://libcoral.org/tags/release/</loc>
+    <lastmod>2010-11-16</lastmod>
+  </url>
+  <url>
+    <loc>http://libcoral.org/tags/news/</loc>
+    <lastmod>2010-11-16</lastmod>
+  </url>
+  <url>
+    <loc>http://libcoral.org/search.html</loc>
+    <lastmod>2010-11-15</lastmod>
+  </url>
 </urlset>

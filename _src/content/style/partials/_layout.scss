@@ -1,0 +1,30 @@
+@import "blueprint/grid";
+@import "compass/css3";
+@import "compass/css3/gradient";
+@import "compass/css3/box-shadow";
+
+#header, #footer {
+	clear: both;
+	overflow: hidden;
+}
+#header {
+	height: 100px;
+	background: #FFFFFF;
+}
+#footer {}
+#container {
+	@include container;
+}
+#fullwidth {
+	@include column( 24 );
+}
+#left-column {
+	@include column( 16 );
+}
+#right-column {
+	@include column( 8, true );
+}
+#content {
+	padding: 30px;
+	word-wrap: break-word;
+}

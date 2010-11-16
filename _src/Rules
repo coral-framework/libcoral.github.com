@@ -1,0 +1,99 @@
+#!/usr/bin/env ruby
+
+require 'compass'
+
+Compass.add_project_configuration( 'config.rb' )
+
+### Preprocessing Rules
+
+preprocess do
+	# remove css and images from the sitemap
+	items.each do |item|
+		if	item.identifier.include?( "/images/" ) ||
+			item.identifier.include?( "/js/" ) ||
+			item.identifier.include?( "/style/" )
+		then
+			item[:is_hidden] = true
+		end
+
+		# automatically set :created_at for news articles
+		if item.identifier =~ /^\/news\// then
+			parts = item.identifier.gsub( '-', '/' ).split( '/' )[2,4]
+			item[:created_at] = parts.join( '/' )
+		end
+	end
+end
+
+### Routing Rules
+
+route '/js/*/' do
+	# special route for javascripts
+	item.identifier.chop + '.' + item[:extension]
+end
+
+route '/style/partials/*/' do
+	nil # don't output partials
+end
+
+route '/style/*/' do
+	# special route for stylesheets
+	item.identifier.chop + '.css'
+end
+
+route '/tags/*/' do
+	item.identifier.match( /^(\/tags)\/(.+)\/$/ ).captures.join( '/' ) + '/index.html'
+end
+
+route '*' do
+	if item.binary?
+		item.raw_filename[7..-1]
+	else
+		route_path( item )
+	end
+end
+
+### Compilation Rules
+
+compile '/js/*/' do
+	nil # don't compile javascripts
+end
+
+compile '/style/partials/*/' do
+	nil # don't compile partials
+end
+
+compile '/style/*/' do
+	filter :sass, Compass.sass_engine_options
+	filter :relativize_paths, :type => :css
+end
+
+compile '*' do
+	if not item.binary? then
+		# item[:extension] returns 'html.erb' for multi-dotted filename
+		ext = item[:extension].nil? ? nil : item[:extension].split('.').last
+
+		case ext
+			when 'md', 'markdown'
+				filter :erb
+				filter :rdiscount
+			when 'haml'
+				filter :haml
+			else
+				filter :erb
+		end
+
+		# use layouts for items mapped to .html or with layout specified in meta
+		item[:layout] = 'none' unless item[:layout] || File.extname( route_path( item ) ) == '.html'
+		unless item[:layout] == 'none'
+			item[:layout] = 'article' if item[:kind] == 'article'
+			layout item[:layout] || 'default'
+			filter :relativize_paths, :type => :html
+		end
+
+		filter :rubypants
+	end
+end
+
+### Layout Rules
+
+layout '*', :haml, :ugly => true

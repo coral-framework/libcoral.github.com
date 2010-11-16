@@ -1,3 +1,6 @@
+---
+is_hidden: true
+---
 User-agent: *
 
 Allow: /
@@ -6,4 +9,4 @@ Disallow: /js/
 Disallow: /style/
 Disallow: /images/
 
-Sitemap: http://libcoral.org/sitemap.xml
+Sitemap: <%= "#{@config[:base_url]}/sitemap.xml" %>

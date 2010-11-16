@@ -1,4 +1,53 @@
----
-layout: nil
----
-{% assign self = '/releases/atom.xml' %}{% assign posts = site.categories.releases %}{% include atom %}
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>http://libcoral.org/</id>
+  <title>Coral Releases Feed</title>
+  <updated>2010-11-10T02:00:00Z</updated>
+  <link rel="alternate" href="http://libcoral.org/"/>
+  <link rel="self" href="http://libcoral.org/releases/atom.xml"/>
+  <author>
+    <name>Coral</name>
+    <uri>http://libcoral.org/releases/</uri>
+  </author>
+  <entry>
+    <id>tag:libcoral.org,2010-11-10:/releases/coral/0.5.0.html</id>
+    <title type="html">Coral 0.5.0 Released</title>
+    <published>2010-11-10T02:00:00Z</published>
+    <updated>2010-11-10T02:00:00Z</updated>
+    <link rel="alternate" href="http://libcoral.org/releases/coral/0.5.0.html"/>
+    <content type="html">&lt;p&gt;This is the first public version of Coral. A &lt;em&gt;very early&lt;/em&gt;, unstable beta release &#8212; although for practical purposes also a &#8220;feature-complete&#8221; release. The first stable version will be v1.0.0, which is still a few months away. Until then, we are going to work on the documentation, improve the usability, write more tests, improve the stabilty and robustness of the framework, write performance tests, profile and then improve the performance of the framework.&lt;/p&gt;
+
+&lt;h2&gt;Changes since v0.4.x&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;New nomenclature for server/client interfaces:
+
+&lt;ul&gt;
+&lt;li&gt;Server (or &#8220;provided&#8221;) interfaces are now called &#8220;facets&#8221;.&lt;/li&gt;
+&lt;li&gt;Client (or &#8220;required&#8221;) interfaces are now called &#8220;receptacles&#8221;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;The CSL keyword for specifying receptacles changed from &#8220;requires&#8221; to &#8220;receives&#8221;.&lt;/li&gt;
+&lt;li&gt;Many improvements to comments and error messages.&lt;/li&gt;
+&lt;li&gt;The compiler cache file is now deleted in a &#8220;make clean&#8221;.&lt;/li&gt;
+&lt;li&gt;The Lua module now features an embedded copy of LuaSocket, ported to Lua 5.2.&lt;/li&gt;
+&lt;li&gt;New utility Lua package: &#8220;printData&#8221;, returns a function for printing data structures.&lt;/li&gt;
+&lt;li&gt;Fixed a bug in the Lua module related to accessing a &lt;code&gt;co::Component&lt;/code&gt; as a member attribute from Lua.&lt;/li&gt;
+&lt;li&gt;Several tweaks and small fixes.&lt;/li&gt;
+&lt;li&gt;Native module libraries are now loaded with global symbols sharing enabled.&lt;/li&gt;
+&lt;li&gt;createModulePart() is now generated into the module&#8217;s namespace to solve a bug in module loading.&lt;/li&gt;
+&lt;li&gt;The Coral compiler can now be used to generate documentation for a module (as a set of input files for Doxygen).&lt;/li&gt;
+&lt;li&gt;Improved the parsing of documentation in CSL files.&lt;/li&gt;
+&lt;li&gt;Forced AntLR to open all files in text mode, instead of binary (solves a problem with line endings).&lt;/li&gt;
+&lt;li&gt;New CMake function &lt;code&gt;CORAL_GENERATE_DOX&lt;/code&gt;, for running &lt;code&gt;coralc&lt;/code&gt; to generate documentation.&lt;/li&gt;
+&lt;li&gt;New CMake function &lt;code&gt;CORAL_BUILD_CSL_MODULE&lt;/code&gt;, to build a module comprised only of CSL files.&lt;/li&gt;
+&lt;li&gt;The internal CMake macros &lt;code&gt;CORAL_DEFAULT_TARGET_PROPERTIES&lt;/code&gt; and &lt;code&gt;CORAL_MODULE_TARGET_PROPERTIES&lt;/code&gt; are now public.&lt;/li&gt;
+&lt;li&gt;Many general improvements to documentation.&lt;/li&gt;
+&lt;li&gt;Enhanced the aesthetics and the organization of documentation in many ways.&lt;/li&gt;
+&lt;li&gt;Removed the &#8220;intermediate&#8221; exception types &lt;code&gt;co::CoreException&lt;/code&gt; and &lt;code&gt;co::UserException&lt;/code&gt;. Now all CSL exceptions inherit directly from &lt;code&gt;co::Exception&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Complete revamp of the documentation, now generated using &lt;code&gt;coralc&lt;/code&gt; and &lt;code&gt;nanoc&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+  </entry>
+</feed>

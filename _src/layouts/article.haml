@@ -1,0 +1,9 @@
+- render 'default' do
+	#article
+		%h1 #{@item[:title]}
+		= article_meta( @item )
+		- if @item[:project] then
+			%p
+				Download Links: #{download_links( @item[:project], "v#{@item[:version]}" )}
+		= yield
+		= article_tags( @item )

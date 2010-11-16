@@ -1,4 +1,0 @@
----
-layout: nil
----
-{% assign self = '/atom.xml' %}{% assign posts = site.posts %}{% include atom %}
