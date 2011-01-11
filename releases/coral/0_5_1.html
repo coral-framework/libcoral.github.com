@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang='en'>
 <head>
-<title>Tag: Website - Coral - A lightweight C++ component framework</title>
+<title>Coral 0.5.1 Released - Coral - A lightweight C++ component framework</title>
 <link href='../../style/screen.css' media='screen, projection' rel='stylesheet' type='text/css' />
 <link href='../../style/print.css' media='print' rel='stylesheet' type='text/css' />
 <!--[if lt IE 8]>
@@ -57,38 +57,48 @@
 
 </div>
 <div id='container'>
-<div id='left-column'>
+<div id='fullwidth'>
 <div class='panel' id='content'>
-<h1>Tag: Website</h1>
-<p>This page lists all articles tagged as &#8220;website&#8221;:</p>
+<div id='article'>
+<h1>Coral 0.5.1 Released</h1>
+<p class='meta'>by Thiago Bastos on January 10, 2011</p>
+<p>
+Download Links: <a href="https://github.com/libcoral/coral/tarball/v0.5.1">TAR</a>, <a href="https://github.com/libcoral/coral/zipball/v0.5.1">ZIP</a>
+</p>
+<p>This is a maintenance release. It fixes bugs and usability issues found in the SDK since v0.5 was released.</p>
+
+<h2>Changes since v0.5.0</h2>
+
 <ul>
-<li>
-2010-11-16
-<a href="../../news/2010/11/16/coral-website-launched.html">Coral Website Launched</a>
+<li>Updated Lua to version 5.2 alpha.</li>
+<li>Updated mapping rules: output array parameters are now passed by reference instead of pointers, and cannot be null.</li>
+<li>The CMake target &#8216;docs&#8217; now also compiles the general documentation (requires nanoc).</li>
+<li>Improvements for the API documentation (cosmetic changes, syntax highlighting for Lua code, etc.)</li>
+<li>Many small bug fixes, specially on Windows.</li>
+<li>Fixed handling of Windows-style (CRLF) line-endings in CSL files.</li>
+<li><code>RelWithDebInfo</code> builds are now considered &#8216;release&#8217; builds, instead of &#8216;debug&#8217;.</li>
+<li>Fix for a segfault related to lazy-loading a service from an invalid module.</li>
+<li>New template function <code>co::Any::createComplexValue&lt;T&gt;()</code>.</li>
+<li>Fixed bugs in <code>co::Any</code>&#8217;s temporary objects API.</li>
+<li>Fixed potential (although unconfirmed) uninitialized memory problems in the <code>co::Any</code> constructors, detected by valgrind when running with optimizations.</li>
+<li>Improved SDK packaging:
+
+<ul>
+<li>Universal support for simultaneous Debug/Release installs of the SDK in the same <code>CORAL_ROOT</code>.</li>
+<li>A safe <code>CMAKE_INSTALL_PREFIX</code> is now enforced on all platforms.</li>
+<li>The Windows Debug package now includes PDB files.</li>
+<li>Renamed the launcher executable from <code>coral</code> to <code>launcher</code> to solve PDB name clashes on Windows.</li>
+<li>The core library now gets a &#8216;_debug&#8217; suffix when built in debug mode.</li>
+<li>The <code>coral</code> and <code>coralc</code> executables are now simple C++ programs (instead of shell scripts).</li>
+<li>It is now possible to request the <code>coral</code> executable to start the framework in either Debug or Release mode via the command-line option &#8216;&#8211;mode&#8217;.</li>
+</ul>
 </li>
 </ul>
 
+
+<p class='tags'>Tagged as: <a href="http://libcoral.org/tags/release" rel="tag">release</a>, <a href="http://libcoral.org/tags/coral" rel="tag">coral</a></p>
 </div>
-</div>
-<div id='right-column'>
-<div id='sidepanel'>
-<div id='title'>Tags</div>
-<div id='content'>
-<ul>
-<li>
-<a href='../coral/'>coral</a>
-</li>
-<li>
-<a href='../news/'>news</a>
-</li>
-<li>
-<a href='../release/'>release</a>
-</li>
-<li>
-<a href='./'>website</a>
-</li>
-</ul>
-</div>
+
 </div>
 </div>
 
@@ -151,7 +161,7 @@
 <a href='../../news/'>News</a>
 </li>
 <li>
-<a href='../release/'>Releases</a>
+<a href='../../tags/release/'>Releases</a>
 </li>
 <li>
 <a href='https://github.com/libcoral/coral/commits/'>Commits</a>
