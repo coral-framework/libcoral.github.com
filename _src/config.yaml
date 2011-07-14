@@ -2,7 +2,7 @@
 
 base_url: http://libcoral.org
 
-title: Coral - A lightweight C++ component framework
+title: Coral - Lightweight C++ Component Framework
 
 modules:
   - {name: lua, title: Lua Module, description: The Lua Module}

@@ -17,7 +17,7 @@
 				- excerpt = excerptize( strip_html( content ), :length => @config[:excerpt_maxlen] )
 		= excerpt
 		- if needsReadMore then
-			%p= link_to( "[click to continue...]", article )
+			%p= link_to( "[Read Full Article]", article )
 		= article_tags( article )
 		#separator
 %small Showing the #{numShown} most recent articles (out of #{sorted_articles.length}).

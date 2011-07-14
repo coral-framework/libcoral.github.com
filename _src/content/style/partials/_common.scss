@@ -117,9 +117,24 @@ pre {
 
 #logotitle {
 	float: left;
-	z-index: 2;
 	position: absolute;
-	a:hover{ text-decoration: none; }
+	z-index: 2;
+	top: 9px;
+	#logo {
+		position: absolute;
+		left: 9px;
+		width: 70px;
+		height: 80px;
+		background: url('../images/logo.png');
+	}
+	#title {
+		position: absolute;
+		top: 9px;
+		left: 102px;
+		width: 128px;
+		height: 47px;
+		background: url('../images/coral.png');
+	}
 	h1 {
 		padding: 18px 0px 0px 8px;
 		color: $link-color;

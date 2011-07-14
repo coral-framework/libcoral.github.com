@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://libcoral.org/</id>
   <title>Coral News Feed</title>
-  <updated>2011-01-10T02:00:00Z</updated>
+  <updated>2011-06-22T03:00:00Z</updated>
   <link rel="alternate" href="http://libcoral.org/"/>
   <link rel="self" href="http://libcoral.org/news/atom.xml"/>
   <author>
@@ -10,12 +10,183 @@
     <uri>http://libcoral.org/news/</uri>
   </author>
   <entry>
+    <id>tag:libcoral.org,2011-06-22:/releases/coral/0_6_0.html</id>
+    <title type="html">Coral 0.6 Released</title>
+    <published>2011-06-22T03:00:00Z</published>
+    <updated>2011-06-22T03:00:00Z</updated>
+    <link rel="alternate" href="http://libcoral.org/releases/coral/0_6_0.html"/>
+    <content type="html">&lt;p&gt;First major, architecturally stable beta release.&lt;/p&gt;
+
+&lt;h2&gt;Changes since v0.5.x&lt;/h2&gt;
+
+&lt;h3&gt;New Features&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Coral now provides its own RTTI system and no longer relies on the C++ RTTI.&lt;/li&gt;
+&lt;li&gt;Support for raising any Coral exception type via the reflection API.&lt;/li&gt;
+&lt;li&gt;The Coral Compiler now generates &lt;em&gt;implementation templates&lt;/em&gt; for components and native classes. This can greatly reduce the manual cost of implementing new components in C++.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Dropped Features&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Removed support for multiple interface inheritance, as it proved to be of little use and never essential. This allows for huge simplifications in the core and improved performance. Please note that multiple inheritance is still available in components through the ability of having multiple facets.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;General Improvements&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Modules that install new loaders now get the new loaders immediately applied on themselves. As an important side effect, modules that use Lua may load the &#8216;lua&#8217; module during initialization to get their Lua ModulePart loaded.&lt;/li&gt;
+&lt;li&gt;Simplifications to the CSL language:
+
+&lt;ul&gt;
+&lt;li&gt;Dropped the &lt;code&gt;attribute&lt;/code&gt; keyword. Attributes are now dubbed &lt;em&gt;fields&lt;/em&gt;, and are always declared as in structs.&lt;/li&gt;
+&lt;li&gt;Interfaces only provide single inheritance, and it&#8217;s now specified &#224; la Java, with &lt;code&gt;extends&lt;/code&gt; instead of &lt;code&gt;:&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Empty interfaces with no inheritance and empty native classes are now considered valid.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;The API and documentation has been revised in order to improve its use of CBSE terminology. New terms &#8212; such as services, ports, facets, receptacles, and so on &#8212; have been adopted in order to clear ambiguities.&lt;/li&gt;
+&lt;li&gt;Revamped the type hierarchy to use single inheritance.&lt;/li&gt;
+&lt;li&gt;Removed all uses of &lt;code&gt;dynamic_cast&lt;/code&gt;. Coral&#8217;s own &lt;code&gt;co::cast&lt;/code&gt; is now used wherever necessary.&lt;/li&gt;
+&lt;li&gt;The Coral Path is now guaranteed to contain only normalized, absolutized pathnames.&lt;/li&gt;
+&lt;li&gt;The core now checks whether a dir is already in the Coral Path before adding a duplicate entry.&lt;/li&gt;
+&lt;li&gt;Enums now use built-in reflectors instead of generated ones.&lt;/li&gt;
+&lt;li&gt;Generated structs now provide a specialized &lt;code&gt;swap()&lt;/code&gt; function for improved efficiency.&lt;/li&gt;
+&lt;li&gt;The project&#8217;s internal documentation has been improved.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Coral Library (libcoral)&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;New type operators &lt;code&gt;co::cast()&lt;/code&gt;, &lt;code&gt;co::isA()&lt;/code&gt; and &lt;code&gt;co::ensureIsA()&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;New function &lt;code&gt;co::findModuleFile()&lt;/code&gt; for locating resource files within a module.&lt;/li&gt;
+&lt;li&gt;New method &lt;code&gt;co::IReflector::raise()&lt;/code&gt; for raising any Coral exception via reflection.&lt;/li&gt;
+&lt;li&gt;It is now possible to query the concrete type of a &lt;code&gt;co::Exception&lt;/code&gt; through the virtual method &lt;code&gt;getTypeName()&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Revised the names of all types and methods.
+
+&lt;ul&gt;
+&lt;li&gt;Removed the &lt;em&gt;&#8221;Component&#8221;&lt;/em&gt; suffix from all component names.&lt;/li&gt;
+&lt;li&gt;Prefixed all core interfaces with an &#8220;I&#8221;, to comply with standard practice.&lt;/li&gt;
+&lt;li&gt;Renamed types and methods to improve terminology and make code shorter and simpler.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Refactored &lt;code&gt;co::RefVector&lt;/code&gt; and &lt;code&gt;co::Range&lt;/code&gt; (renamed from &lt;code&gt;co::ArrayRange&lt;/code&gt;) to maximize reusability while providing a cleaner API.&lt;/li&gt;
+&lt;li&gt;Class &lt;code&gt;co::Range&lt;/code&gt; is now accompanied by a mini template library:
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;co::copy()&lt;/code&gt; copies the elements from a &#8220;source&#8221; range into a &#8220;destination&#8221; range.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;co::assign()&lt;/code&gt; assigns the contents of a &#8220;source&#8221; range to a std::vector-compatible container.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;co::binarySearch()&lt;/code&gt; performs a binary search on a sorted range using a comparison function. This has replaced method &lt;code&gt;co::RefVector::sortedFind()&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Revamped API for manipulating object services (through its facets and receptacles).
+
+&lt;ul&gt;
+&lt;li&gt;Method &lt;code&gt;co::IObject::getService&amp;lt;T&amp;gt;()&lt;/code&gt; can be used to obtain a service by type, and now works properly even for dynamic service providers (e.g. components implemented in Lua).&lt;/li&gt;
+&lt;li&gt;New overload &lt;code&gt;co::IObject::getService( name )&lt;/code&gt; for obtaining a service by its port name.&lt;/li&gt;
+&lt;li&gt;New overload &lt;code&gt;co::IObject::setService( receptacleName, service )&lt;/code&gt; for setting a receptacle by name.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;New enum &lt;code&gt;co.MemberKind&lt;/code&gt; enumerates all kinds of &lt;em&gt;members&lt;/em&gt; in the type system.&lt;/li&gt;
+&lt;li&gt;New field &lt;code&gt;kind&lt;/code&gt;, of type &lt;code&gt;co.MemberKind&lt;/code&gt;, added to interface &lt;code&gt;co.IMember&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;New traits in C++ for testing whether a type is a subtype of another.&lt;/li&gt;
+&lt;li&gt;Refactored most OS-specific code from the Coral executables into the reserved header file &lt;code&gt;co/reserved/OS.h&lt;/code&gt;. The old API in &lt;code&gt;co/reserved/FileLookup.h&lt;/code&gt; has been replaced by functions in &lt;code&gt;OS.h&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Fixed a potential ABI clash problem between modules with homonymous components.
+
+&lt;ul&gt;
+&lt;li&gt;Components must always be implemented within their module&#8217;s namespace.&lt;/li&gt;
+&lt;li&gt;Macro &lt;code&gt;CORAL_EXPORT_COMPONENT()&lt;/code&gt; must now be called from within the module&#8217;s namespace.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Reduced the memory footprint of &lt;code&gt;co::Any&lt;/code&gt; with better data packing.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;co::Any&lt;/code&gt; now provides a general &lt;code&gt;swap()&lt;/code&gt; method.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;co::RefPtr&lt;/code&gt; now provides an ADL-based overload for &lt;code&gt;swap()&lt;/code&gt; calls.&lt;/li&gt;
+&lt;li&gt;Fixed a bug in &lt;code&gt;co::Any::makeOut()&lt;/code&gt; when preserving a const string.&lt;/li&gt;
+&lt;li&gt;Fixed a bug in the search order of native module libraries that caused a &#8220;release&#8221; library to be used in debug mode, even when a &#8220;debug&#8221; library was present.&lt;/li&gt;
+&lt;li&gt;Fixed a bug where the list of sub-types of an interface could contain dangling pointers after a failed attempt to load a subtype.&lt;/li&gt;
+&lt;li&gt;Fixed a bug in &lt;code&gt;co/Coral.h&lt;/code&gt; that would cause the wrong &lt;code&gt;co::getService()&lt;/code&gt; overload to be called.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Coral Compiler (coralc)&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;When generating code for a module, implementation templates are now generated for components and native classes. Each type produces a &lt;code&gt;.cpp&lt;/code&gt; file, in the &lt;code&gt;generated/@templates&lt;/code&gt; subdir, that can be easily copied and used in any project.&lt;/li&gt;
+&lt;li&gt;The Coral Compiler now re-generates all sources if at least one generated file is missing &#8212; even when the coralc cache file is present (solves a problem with IDEs that delete the sources, but not the cache file).&lt;/li&gt;
+&lt;li&gt;The compiler now always generates mappings for the intrinsic Coral API dependencies.&lt;/li&gt;
+&lt;li&gt;New option &lt;code&gt;&#8211;ignoredupes&lt;/code&gt; for suppressing warnings about clashing types in the Coral Path.&lt;/li&gt;
+&lt;li&gt;Updated reflector generation rules for exception types.&lt;/li&gt;
+&lt;li&gt;Fixed a bug that caused the Coral Compiler to miss necessary #include&#8217;s in some situations (involving interface inheritance).&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Coral Launcher (coral)&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Option &lt;code&gt;&#8211;mode&lt;/code&gt; is now case insensitive.&lt;/li&gt;
+&lt;li&gt;Path entries passed via command-line are now added &lt;em&gt;before&lt;/em&gt; those in the &lt;code&gt;CORAL_PATH&lt;/code&gt; environment variable.&lt;/li&gt;
+&lt;li&gt;New configuration file &lt;code&gt;coral.properties&lt;/code&gt;, useful for deploying applications. If placed alongside the launcher executable, this file can be used to specify parameters such as the Coral Path, execution mode (debug or release), and extra arguments to the invoked applications.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Lua Module (modules/lua)&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Added LOOP-stye &lt;code&gt;__init()&lt;/code&gt; constructors to Lua components.&lt;/li&gt;
+&lt;li&gt;New function &lt;code&gt;co.typeOf()&lt;/code&gt; to query the type of a Coral value from Lua.&lt;/li&gt;
+&lt;li&gt;New function &lt;code&gt;co.raise()&lt;/code&gt; for raising any Coral exception type from Lua.&lt;/li&gt;
+&lt;li&gt;New function &lt;code&gt;co.findModuleFile()&lt;/code&gt; for locating resource files within a module.&lt;/li&gt;
+&lt;li&gt;Revamped interface &lt;code&gt;lua.IState&lt;/code&gt;.
+
+&lt;ul&gt;
+&lt;li&gt;All lower-level methods to exchange values with the Lua stack, load and call chunks have been replaced by a single higher-level method, &lt;code&gt;callFunction()&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;New method &lt;code&gt;collectGarbage()&lt;/code&gt; to run a full cycle of the Lua garbage collector.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Simplified the internal structure of Lua components (objects now use a single table per instance, instead of a table per facet).&lt;/li&gt;
+&lt;li&gt;Exceptions thrown across Lua (i.e. C++ -&gt; Lua -&gt; C++) now retain their original type, instead of always being converted to a &lt;code&gt;lua::Exception&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;CMake Package (FindCoral.cmake)&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;New CMake variable &lt;code&gt;CORAL_LAUNCHER_FLAGS&lt;/code&gt; can be used to pass additional flags to the &lt;code&gt;coral&lt;/code&gt; executable whenever it&#8217;s invoked by a rule created by one of the CORAL_*() macros.&lt;/li&gt;
+&lt;li&gt;New macro &lt;code&gt;CORAL_TEST_ENVIRONMENT()&lt;/code&gt; allows a CMake test to locate the Coral library even if it is not in the system path (by setting OS-specific environment variables for the test).&lt;/li&gt;
+&lt;li&gt;Duplicate CSL definitions in the Coral Path are now ignored. This used to be an error, but should no longer be a problem with the Coral compiler&#8217;s new lookup strategy.&lt;/li&gt;
+&lt;li&gt;CMake targets created with &lt;code&gt;CORAL_BUILD_CSL_MODULE&lt;/code&gt; are now &lt;code&gt;EXCLUDE_FROM_ALL&lt;/code&gt; by default.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Platform Specific&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;MacOSX: dropped support for module libs with the &lt;code&gt;.dylib&lt;/code&gt; extension. All UNIX systems must use &lt;code&gt;.so&lt;/code&gt; now.&lt;/li&gt;
+&lt;li&gt;UNIX: added method &lt;code&gt;co::LibraryManager::setNoDlClose()&lt;/code&gt; to disable &lt;code&gt;dlclose()&lt;/code&gt; calls when unloading modules. This is useful for tests run through tools such as Valgrind, which get confused when a shared object is unloaded.&lt;/li&gt;
+&lt;li&gt;Windows:
+
+&lt;ul&gt;
+&lt;li&gt;Lots of changes to add support for MinGW.&lt;/li&gt;
+&lt;li&gt;Fixed a bug in the launcher front-end (coral.exe) where it would not correctly determine the presence of a launcher executable (launcher.exe).&lt;/li&gt;
+&lt;li&gt;Fix for inconsistent usage of dir separators.&lt;/li&gt;
+&lt;li&gt;Fixes for many warnings on MSVC.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+    <summary type="html">First major, architecturally stable beta release.</summary>
+  </entry>
+  <entry>
     <id>tag:libcoral.org,2011-01-10:/releases/coral/0_5_1.html</id>
     <title type="html">Coral 0.5.1 Released</title>
     <published>2011-01-10T02:00:00Z</published>
     <updated>2011-01-10T02:00:00Z</updated>
     <link rel="alternate" href="http://libcoral.org/releases/coral/0_5_1.html"/>
-    <content type="html">&lt;p&gt;This is a maintenance release. It fixes bugs and usability issues found in the SDK since v0.5 was released.&lt;/p&gt;
+    <content type="html">&lt;p&gt;This is a maintenance release. It fixes bugs and some SDK usability issues found in the original release.&lt;/p&gt;
 
 &lt;h2&gt;Changes since v0.5.0&lt;/h2&gt;
 
@@ -46,7 +217,7 @@
 &lt;/ul&gt;
 
 </content>
-    <summary type="html">This is a maintenance release. It fixes bugs and usability issues found in the SDK since v0.5 was released. Read on for the full list of changes.</summary>
+    <summary type="html">Maintenance release with bug fixes and improved SDK usability.</summary>
   </entry>
   <entry>
     <id>tag:libcoral.org,2010-11-16:/news/2010/11/16/coral-website-launched.html</id>
@@ -59,7 +230,7 @@
   </entry>
   <entry>
     <id>tag:libcoral.org,2010-11-10:/releases/coral/0_5_0.html</id>
-    <title type="html">Coral 0.5.0 Released</title>
+    <title type="html">Coral 0.5 Released</title>
     <published>2010-11-10T02:00:00Z</published>
     <updated>2010-11-10T02:00:00Z</updated>
     <link rel="alternate" href="http://libcoral.org/releases/coral/0_5_0.html"/>
