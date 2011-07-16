@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang='en'>
 <head>
-<title>Tag: News - Coral - Lightweight C++ Component Framework</title>
+<title>Coral 0.6.1 Released - Coral - Lightweight C++ Component Framework</title>
 <link href='../../images/logo.png' rel='icon' type='image/png' />
 <link href='../../style/screen.css' media='screen, projection' rel='stylesheet' type='text/css' />
 <link href='../../style/print.css' media='print' rel='stylesheet' type='text/css' />
@@ -60,38 +60,38 @@
 
 </div>
 <div id='container'>
-<div id='left-column'>
+<div id='fullwidth'>
 <div class='panel' id='content'>
-<h1>Tag: News</h1>
-<p>This page lists all articles tagged as &#8220;news&#8221;:</p>
+<div id='article'>
+<h1>Coral 0.6.1 Released</h1>
+<p class='meta'>by Thiago Bastos on July 15, 2011</p>
+<p>
+Download Links: <a href="https://github.com/libcoral/coral/tarball/v0.6.1">TAR</a>, <a href="https://github.com/libcoral/coral/zipball/v0.6.1">ZIP</a>
+</p>
+<p>Updated to Lua 5.2 (beta) and fixed a bug in the cleanup sequence of Lua modules.</p>
+
+<h2>Changes since v0.6.0</h2>
+
+<h3>Coral Library (libcoral)</h3>
+
 <ul>
-<li>
-2010-11-16
-<a href="../../news/2010/11/16/coral-website-launched.html">Coral Website Launched</a>
-</li>
+<li>Improved the error message for when a type has no reflector even though its module is loaded (to report the module state).</li>
 </ul>
 
-</div>
-</div>
-<div id='right-column'>
-<div id='sidepanel'>
-<div id='title'>Tags</div>
-<div id='content'>
+
+<h3>Lua Module (modules/lua)</h3>
+
 <ul>
-<li>
-<a href='../coral/'>coral</a>
-</li>
-<li>
-<a href='./'>news</a>
-</li>
-<li>
-<a href='../release/'>release</a>
-</li>
-<li>
-<a href='../website/'>website</a>
-</li>
+<li>Updated the Lua core to version 5.2 beta.</li>
+<li>Fixed a bug where the Lua GC was triggered too late in the modules&#8217; unloading sequence, causing problems with missing reflectors.</li>
+<li>Removed support for handling the <code>dispose()</code> event from a Lua ModulePart. Support for this event was troublesome as it caused mutual dependency problems in the system teardown sequence. Any cleanup that was done in the <code>dispose()</code> event can be moved to the <code>disintegrate()</code> event, or simply rely on the Lua garbage collector.</li>
+<li>The Lua CG now performs a full collection cycle at the end of the <code>disintegrate()</code> phase.</li>
 </ul>
+
+
+<p class='tags'>Tagged as: <a href="http://libcoral.org/tags/release" rel="tag">release</a>, <a href="http://libcoral.org/tags/coral" rel="tag">coral</a></p>
 </div>
+
 </div>
 </div>
 
@@ -154,7 +154,7 @@
 <a href='../../news/'>News</a>
 </li>
 <li>
-<a href='../release/'>Releases</a>
+<a href='../../tags/release/'>Releases</a>
 </li>
 <li>
 <a href='https://github.com/libcoral/coral/commits/'>Commits</a>

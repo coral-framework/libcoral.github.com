@@ -119,21 +119,31 @@ pre {
 	float: left;
 	position: absolute;
 	z-index: 2;
-	top: 9px;
+	top: 10px;
 	#logo {
 		position: absolute;
-		left: 9px;
+		left: 10px;
 		width: 70px;
 		height: 80px;
 		background: url('../images/logo.png');
+		a {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+		}
 	}
 	#title {
 		position: absolute;
-		top: 9px;
-		left: 102px;
+		top: 12px;
+		left: 96px;
 		width: 128px;
 		height: 47px;
 		background: url('../images/coral.png');
+		a {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+		}
 	}
 	h1 {
 		padding: 18px 0px 0px 8px;
@@ -162,7 +172,7 @@ pre {
 	float: left;
 	z-index: 1;
 	position: absolute;
-	margin: 78px 0px 0px 150px;
+	margin: 78px 0px 0px 270px;
 	ul {
 		font-weight: bolder;
 		a { color: $font-color; text-decoration: none; }

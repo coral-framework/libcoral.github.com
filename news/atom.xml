@@ -2,13 +2,42 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://libcoral.org/</id>
   <title>Coral News Feed</title>
-  <updated>2011-06-22T03:00:00Z</updated>
+  <updated>2011-07-15T03:00:00Z</updated>
   <link rel="alternate" href="http://libcoral.org/"/>
   <link rel="self" href="http://libcoral.org/news/atom.xml"/>
   <author>
     <name>Coral</name>
     <uri>http://libcoral.org/news/</uri>
   </author>
+  <entry>
+    <id>tag:libcoral.org,2011-07-15:/releases/coral/0_6_1.html</id>
+    <title type="html">Coral 0.6.1 Released</title>
+    <published>2011-07-15T03:00:00Z</published>
+    <updated>2011-07-15T03:00:00Z</updated>
+    <link rel="alternate" href="http://libcoral.org/releases/coral/0_6_1.html"/>
+    <content type="html">&lt;p&gt;Updated to Lua 5.2 (beta) and fixed a bug in the cleanup sequence of Lua modules.&lt;/p&gt;
+
+&lt;h2&gt;Changes since v0.6.0&lt;/h2&gt;
+
+&lt;h3&gt;Coral Library (libcoral)&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Improved the error message for when a type has no reflector even though its module is loaded (to report the module state).&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Lua Module (modules/lua)&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Updated the Lua core to version 5.2 beta.&lt;/li&gt;
+&lt;li&gt;Fixed a bug where the Lua GC was triggered too late in the modules&#8217; unloading sequence, causing problems with missing reflectors.&lt;/li&gt;
+&lt;li&gt;Removed support for handling the &lt;code&gt;dispose()&lt;/code&gt; event from a Lua ModulePart. Support for this event was troublesome as it caused mutual dependency problems in the system teardown sequence. Any cleanup that was done in the &lt;code&gt;dispose()&lt;/code&gt; event can be moved to the &lt;code&gt;disintegrate()&lt;/code&gt; event, or simply rely on the Lua garbage collector.&lt;/li&gt;
+&lt;li&gt;The Lua CG now performs a full collection cycle at the end of the &lt;code&gt;disintegrate()&lt;/code&gt; phase.&lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+    <summary type="html">Updated to Lua 5.2 (beta) and fixed a bug in the cleanup sequence of Lua modules.</summary>
+  </entry>
   <entry>
     <id>tag:libcoral.org,2011-06-22:/releases/coral/0_6_0.html</id>
     <title type="html">Coral 0.6 Released</title>
