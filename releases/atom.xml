@@ -2,13 +2,32 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://libcoral.org/</id>
   <title>Coral Releases Feed</title>
-  <updated>2011-07-15T03:00:00Z</updated>
+  <updated>2011-07-22T03:00:00Z</updated>
   <link rel="alternate" href="http://libcoral.org/"/>
   <link rel="self" href="http://libcoral.org/releases/atom.xml"/>
   <author>
     <name>Coral</name>
     <uri>http://libcoral.org/releases/</uri>
   </author>
+  <entry>
+    <id>tag:libcoral.org,2011-07-22:/releases/coral/0_6_2.html</id>
+    <title type="html">Coral 0.6.2 Released</title>
+    <published>2011-07-22T03:00:00Z</published>
+    <updated>2011-07-22T03:00:00Z</updated>
+    <link rel="alternate" href="http://libcoral.org/releases/coral/0_6_2.html"/>
+    <content type="html">&lt;p&gt;Fixed a reference counting bug where the reflector used by a co::Any could become invalid.&lt;/p&gt;
+
+&lt;h2&gt;Changes since v0.6.1&lt;/h2&gt;
+
+&lt;h3&gt;Coral Library (libcoral)&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Fixed a reference counting bug where the reflector used by a co::Any could become invalid.&lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+    <summary type="html">Fixed a bug where the reflector used by a co::Any could become invalid.</summary>
+  </entry>
   <entry>
     <id>tag:libcoral.org,2011-07-15:/releases/coral/0_6_1.html</id>
     <title type="html">Coral 0.6.1 Released</title>

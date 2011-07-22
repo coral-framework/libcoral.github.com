@@ -17,11 +17,11 @@ layout: base
 		#stable
 			#{Time.parse( latest[:created_at] ).strftime( "%b %e, %Y" )} --
 			%b #{latest[:version]}
-			(#{download_links( 'coral', "v#{latest[:version]}" )})
+			(#{download_links( 'coral', 'master' )})
 			%br
 			= link_to( "Release Notes", latest )
 		#dev
-			Latest development version: #{download_links( 'coral', 'master' )}
+			Latest development version: #{download_links( 'coral', 'develop' )}
 
 	#sidepanel
 		#title Featured Modules
