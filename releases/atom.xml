@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://libcoral.org/</id>
   <title>Coral Releases Feed</title>
-  <updated>2011-07-22T03:00:00Z</updated>
+  <updated>2011-11-28T02:00:00Z</updated>
   <link rel="alternate" href="http://libcoral.org/"/>
   <link rel="self" href="http://libcoral.org/releases/atom.xml"/>
   <author>
@@ -10,19 +10,184 @@
     <uri>http://libcoral.org/releases/</uri>
   </author>
   <entry>
+    <id>tag:libcoral.org,2011-11-28:/releases/coral/0_7_0.html</id>
+    <title type="html">Coral <span class="caps">0.7</span> Released</title>
+    <published>2011-11-28T02:00:00Z</published>
+    <updated>2011-11-28T02:00:00Z</updated>
+    <link rel="alternate" href="http://libcoral.org/releases/coral/0_7_0.html"/>
+    <content type="html">&lt;p&gt;Coral &lt;span class=&#8221;caps&#8221;&gt;0.7&lt;/span&gt; introduces major new features and lots&nbsp;of&amp;nbsp;improvements.&lt;/p&gt;
+
+&lt;h2&gt;Changes&nbsp;since&amp;nbsp;v0.6.x&lt;/h2&gt;
+
+&lt;h3&gt;New&amp;nbsp;Features&lt;/h3&gt;&nbsp;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Annotations&lt;/strong&gt;: types and members can be decorated with metadata in &lt;span class=&#8221;caps&#8221;&gt;CSL&lt;/span&gt; using syntax similar to&nbsp;Java&amp;nbsp;annotations.
+
+&lt;ul&gt;
+&lt;li&gt;Example:&amp;nbsp;&lt;code&gt;@my.Annotation( &#8220;str value&#8221;, someBoolField = true, tau = 2 * <span class="caps">3.14159</span>&nbsp;)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Currently the &lt;span class=&#8221;caps&#8221;&gt;CSL&lt;/span&gt; parser supports boolean, scalar and&nbsp;string-literal&amp;nbsp;values.&lt;/li&gt;
+&lt;li&gt;Elements decorated with stateless annotations automatically share the same&nbsp;annotation&amp;nbsp;instance.&lt;/li&gt;
+&lt;li&gt;New types of annotations can be defined by implementing a component that provides an&nbsp;annotation&amp;nbsp;service.&lt;/li&gt;
+&lt;li&gt;The &amp;#8220;CSL Flags&amp;#8221; in &lt;code&gt;co/Coral.h&lt;/code&gt; can be used to toggle the loading of annotations, documentation and&nbsp;C++&amp;nbsp;blocks.&lt;/li&gt;
+&lt;li&gt;Added a &lt;span class=&#8221;caps&#8221;&gt;CLI&lt;/span&gt; option to the Coral Launcher to specify the &lt;span class=&#8221;caps&#8221;&gt;CSL&lt;/span&gt; flags at&nbsp;launch&amp;nbsp;time.&lt;/li&gt;
+&lt;/ul&gt;&nbsp;&lt;/li&gt;
+&lt;li&gt;Support for &lt;strong&gt;dynamic types&lt;/strong&gt; through a special kind&nbsp;of&amp;nbsp;annotation.
+
+&lt;ul&gt;
+&lt;li&gt;A type is &lt;em&gt;dynamic&lt;/em&gt; if it has an annotation that&nbsp;implements&amp;nbsp;&lt;code&gt;co.IDynamicTypeProvider&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;A dynamic type is not statically-compiled as part of a module, and does not have a&nbsp;Coral-generated&amp;nbsp;reflector.&lt;/li&gt;
+&lt;li&gt;The type&amp;#8217;s reflector must be provided at run-time by its&nbsp;dynamic-type&amp;nbsp;annotation.&lt;/li&gt;
+&lt;li&gt;Example: &lt;span class=&#8221;caps&#8221;&gt;CSL&lt;/span&gt; components can be implemented in Lua if annotated with the&nbsp;&lt;code&gt;@lua.Scripted&lt;/code&gt;&amp;nbsp;annotation.&lt;/li&gt;
+&lt;/ul&gt;&nbsp;&lt;/li&gt;
+&lt;li&gt;More powerful &lt;strong&gt;native classes&lt;/strong&gt; based on C++ blocks&nbsp;and&amp;nbsp;annotations.
+
+&lt;ul&gt;
+&lt;li&gt;Instead of being defined in terms of a C++ header and a type name, which proved to be a restrictive approach, native classes are now freely declared using &lt;em&gt;C++ blocks&lt;/em&gt; in&amp;nbsp;&lt;span&nbsp;class=&#8221;caps&#8221;&gt;CSL.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;C++ blocks are mapped from &lt;span class=&#8221;caps&#8221;&gt;CSL&lt;/span&gt; to &lt;em&gt;global scope&lt;/em&gt; in the native class&amp;#8217;s header file. The only rule is that the code must declare a C++ type with the same fully-qualified name as the&nbsp;native&amp;nbsp;class.&lt;/li&gt;
+&lt;li&gt;When added to a native class, the &lt;span class=&#8221;caps&#8221;&gt;CSL&lt;/span&gt; annotation &lt;code&gt;@co.Include( &#8220;header/name.h&#8221; )&lt;/code&gt; instructs the Coral Compiler to include the specified C++ header when generating code that uses the&nbsp;native&amp;nbsp;class.&lt;/li&gt;
+&lt;li&gt;Recommended&amp;nbsp;usage:&nbsp;&lt;ul&gt;
+&lt;li&gt;Declare &lt;em&gt;simple types&lt;/em&gt; directly in the&nbsp;C++&amp;nbsp;block.&lt;/li&gt;
+&lt;li&gt;For complex types, include only a &lt;em&gt;forward declaration&lt;/em&gt; in the C++ block, then use the &lt;code&gt;@co.Include&lt;/code&gt; annotation to indicate where the full declaration&nbsp;is&amp;nbsp;located.&lt;/li&gt;
+&lt;/ul&gt;&nbsp;&lt;/li&gt;
+&lt;/ul&gt;&nbsp;&lt;/li&gt;
+&lt;li&gt;Simple yet powerful &lt;strong&gt;Logging &lt;span class=&#8221;caps&#8221;&gt;API&lt;/span&gt;&lt;/strong&gt;, with design inspired by Google&amp;#8217;s Log library (&lt;a href=&#8221;http://doc.libcoral.org/0.7/api/group__log.html#details&#8221;&gt;see the&nbsp;documentation&lt;/a&gt;).&lt;/li&gt;
+&lt;/ul&gt;&nbsp;&lt;h3&gt;Dropped&amp;nbsp;Features&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;The &lt;em&gt;debug events&lt;/em&gt; &lt;span class=&#8221;caps&#8221;&gt;API&lt;/span&gt; was dropped in favor of the new, much superior &lt;em&gt;Logging &lt;span&nbsp;class=&#8221;caps&#8221;&gt;API&lt;/span&gt;&lt;/em&gt;.&lt;/li&gt;
+&lt;/ul&gt;&nbsp;&lt;h3&gt;General&amp;nbsp;Improvements&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Improved the &lt;span class=&#8221;caps&#8221;&gt;CSL&lt;/span&gt;&nbsp;parsing&amp;nbsp;backend.
+
+&lt;ul&gt;
+&lt;li&gt;Switched parser generators, from &lt;span class=&#8221;caps&#8221;&gt;ANTLR&lt;/span&gt; to Flex/Bison. The ANLR3c runtime was not well maintained, and  Flex/Bison turned out to be a much simpler solution, aside from being both faster and lighter. This also means Coral is purely licensed under &lt;span class=&#8221;caps&#8221;&gt;MIT&lt;/span&gt; now (ANTLR3c was under&amp;nbsp;&lt;span&nbsp;class=&#8221;caps&#8221;&gt;BSD&lt;/span&gt;).&lt;/li&gt;
+&lt;li&gt;Added columns to&nbsp;error&amp;nbsp;locations.&lt;/li&gt;
+&lt;li&gt;Slightly improved error messages in&nbsp;the&amp;nbsp;parser.&lt;/li&gt;
+&lt;/ul&gt;&nbsp;&lt;/li&gt;
+&lt;li&gt;Simplified the type creation &lt;span class=&#8221;caps&#8221;&gt;API&lt;/span&gt; by moving &amp;#8220;type transactions&amp;#8221; a bit to&nbsp;the&amp;nbsp;background.
+
+&lt;ul&gt;
+&lt;li&gt;Now &lt;code&gt;co.ITypeTransaction&lt;/code&gt; is provided as a reusable singleton by the&nbsp;type&amp;nbsp;manager.
+
+&lt;ul&gt;
+&lt;li&gt;In&nbsp;C++:&amp;nbsp;&lt;code&gt;co::getSystem()-&amp;gt;getTypes()-&amp;gt;getTransaction()&lt;/code&gt;;&lt;/li&gt;
+&lt;li&gt;In&nbsp;Lua:&amp;nbsp;&lt;code&gt;co.system.types.transaction&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;&nbsp;&lt;/li&gt;
+&lt;li&gt;Users no longer need to specify a &lt;code&gt;co.ITypeTransaction&lt;/code&gt; to create a type builder. However, they still need to manage commits/rollbacks through the global&nbsp;type&amp;nbsp;transaction.&lt;/li&gt;
+&lt;/ul&gt;&nbsp;&lt;/li&gt;
+&lt;li&gt;Field &lt;code&gt;size&lt;/code&gt; in &lt;code&gt;IReflector&lt;/code&gt; now always returns &lt;code&gt;sizeof(co::RefPtr)&lt;/code&gt; for interface reflectors, indicating the size of a service reference. Previously, it returned a&nbsp;useless&amp;nbsp;value.&lt;/li&gt;
+&lt;li&gt;Many refactorings, code cleanups and&nbsp;new&amp;nbsp;tests.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Coral&nbsp;Library&amp;nbsp;(libcoral)&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;New interface &lt;code&gt;co.IAnnotation&lt;/code&gt; for defining&nbsp;annotation&amp;nbsp;types.&lt;/li&gt;
+&lt;li&gt;Types and members can now have annotations (both &lt;code&gt;co.IType&lt;/code&gt; and &lt;code&gt;co.IMember&lt;/code&gt;&nbsp;extend&amp;nbsp;&lt;code&gt;co.IAnnotated&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;Documentation and C++ blocks have been refactored as annotations, instead of built-in&nbsp;data&amp;nbsp;structures.&lt;/li&gt;
+&lt;li&gt;New interface &lt;code&gt;co.IDynamicTypeProvider&lt;/code&gt;, which extends &lt;code&gt;co.IAnnotation&lt;/code&gt;, for implementing dynamic&nbsp;type&amp;nbsp;providers.&lt;/li&gt;
+&lt;li&gt;Fixed a bug related to casting a null &lt;code&gt;co::Any&lt;/code&gt; to a&nbsp;primitive&amp;nbsp;value.&lt;/li&gt;
+&lt;li&gt;Many general improvements to the type&nbsp;traits&amp;nbsp;code.&lt;/li&gt;
+&lt;li&gt;Operator &lt;code&gt;co::typeOf&amp;lt;T&amp;gt;&lt;/code&gt; is no longer overloaded for&nbsp;every&amp;nbsp;type.&lt;/li&gt;
+&lt;li&gt;Renamed method &lt;code&gt;co::IObject::getService( co::IPort* )&lt;/code&gt; to &lt;code&gt;getServiceAt&lt;/code&gt; to avoid overloading&nbsp;virtual&amp;nbsp;methods.&lt;/li&gt;
+&lt;li&gt;Safer coercions from const containers&nbsp;to&amp;nbsp;&lt;code&gt;co::Range&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;The coercion from &lt;code&gt;co::RefVector&amp;lt;T&amp;gt;&lt;/code&gt; to &lt;code&gt;co::Range&amp;lt;T*&amp;gt;&lt;/code&gt; has been forbidden (must be&amp;nbsp;&lt;code&gt;co::Range&amp;lt;T*&nbsp;const&amp;gt;&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;Header &lt;code&gt;co/Uuid.h&lt;/code&gt; now only forward declares &lt;code&gt;co::Uuid&lt;/code&gt;. For the full type,&nbsp;include&amp;nbsp;&lt;code&gt;co/reserved/Uuid.h&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;The &lt;span class=&#8221;caps&#8221;&gt;LLVM&lt;/span&gt;-GCC and Clang compilers are now properly detected&nbsp;in&amp;nbsp;&lt;code&gt;co/Platform.h&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Removed&nbsp;method&amp;nbsp;&lt;code&gt;co::ITypeBuilder::defineNativeClass()&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Renamed utility function &lt;code&gt;co::findModuleFile()&lt;/code&gt;&nbsp;to&amp;nbsp;&lt;code&gt;co::findFile()&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Coral&nbsp;Compiler&amp;nbsp;(coralc)&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Automatic detection and re-generation of incompatible code generated by different&nbsp;compiler&amp;nbsp;versions.&lt;/li&gt;
+&lt;li&gt;Component templates are now generated with member variables and working getters&nbsp;and&amp;nbsp;setters.
+
+&lt;ul&gt;
+&lt;li&gt;Now plain data components can be used straight out of the Coral Compiler, without&nbsp;any&amp;nbsp;change.&lt;/li&gt;
+&lt;/ul&gt;&nbsp;&lt;/li&gt;
+&lt;li&gt;The Coral Compiler now always generates a special &lt;code&gt;__AllInOne.cpp&lt;/code&gt; file that includes all generated module sources. This file can be used to compile a module when listing each generated file would be too much of&nbsp;a&amp;nbsp;burden.&lt;/li&gt;
+&lt;li&gt;New approach to handle duplicate CSLs in the Coral path: now, when generating a module, the compiler limits itself to the first dir in the path that contains &lt;span class=&#8221;caps&#8221;&gt;CSL&lt;/span&gt; files for such module, ignoring all other dirs. This approach solves all problems and is very simple to grasp. To make sure a certain dir is used when generating a module, list it first&nbsp;using&amp;nbsp;&lt;code&gt;-p&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Dropped option &lt;code&gt;&#8211;ignoredupes&lt;/code&gt;, since it has become the&nbsp;default/only&amp;nbsp;behavior.&lt;/li&gt;
+&lt;li&gt;New option &lt;code&gt;&#8211;list&lt;/code&gt; for printing the list of files that would be generated for a module, without&nbsp;generating&amp;nbsp;anything.&lt;/li&gt;
+&lt;li&gt;The compiler&amp;#8217;s front end is now a Lua component (&lt;code&gt;co.compile.Compiler&lt;/code&gt;) instead of a&nbsp;script&amp;nbsp;(&lt;code&gt;co.compile.cli&lt;/code&gt;).&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Coral&nbsp;Launcher&amp;nbsp;(coral)&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;New option &lt;code&gt;&#8211;csl&lt;/code&gt; for toggling &lt;span class=&#8221;caps&#8221;&gt;CSL&lt;/span&gt; features. By default, annotations are &lt;em&gt;on&lt;/em&gt;, while documentation/C++ blocks are&nbsp;&lt;em&gt;off&lt;/em&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Lua&nbsp;Module&amp;nbsp;(modules/lua)&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Updated to Lua &lt;span class=&#8221;caps&#8221;&gt;5.2&lt;/span&gt; release&nbsp;candidate&amp;nbsp;2.&lt;/li&gt;
+&lt;li&gt;Components defined in &lt;span class=&#8221;caps&#8221;&gt;CSL&lt;/span&gt; can now be implemented in Lua.&nbsp;For&amp;nbsp;this:
+
+&lt;ol&gt;
+&lt;li&gt;Annotate the component with &lt;code&gt;@lua.Scripted( &#8220;script.name&#8221; )&lt;/code&gt;, indicating the script that&nbsp;implements&amp;nbsp;it.&lt;/li&gt;
+&lt;li&gt;In the script, call &lt;code&gt;co.Component()&lt;/code&gt; with the &lt;em&gt;type name&lt;/em&gt;, instead of a&nbsp;component-description&amp;nbsp;table.&lt;/li&gt;
+&lt;/ol&gt;&nbsp;&lt;/li&gt;
+&lt;li&gt;Lua components can be called directly by the Coral Launcher as long as they are defined in&amp;nbsp;&lt;span&nbsp;class=&#8221;caps&#8221;&gt;CSL.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;Added function &lt;code&gt;co.getException()&lt;/code&gt; for extracting the type and message of a Coral exception caught&nbsp;from&amp;nbsp;Lua.&lt;/li&gt;
+&lt;li&gt;Moved all Coral-provided reusable Lua modules (i.e. &lt;code&gt;cmdline&lt;/code&gt;, &lt;code&gt;path&lt;/code&gt; and &lt;code&gt;printVar&lt;/code&gt;) into the &lt;code&gt;lua&lt;/code&gt; namespace, in order to make clear which Coral module&nbsp;provides&amp;nbsp;them.&lt;/li&gt;
+&lt;li&gt;Added functions &lt;code&gt;join&lt;/code&gt;, &lt;code&gt;split&lt;/code&gt; and &lt;code&gt;splitExt&lt;/code&gt; to Lua&nbsp;module&amp;nbsp;&lt;code&gt;lua.path&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Renamed function &lt;code&gt;co.findModuleFile()&lt;/code&gt;&nbsp;to&amp;nbsp;&lt;code&gt;co.findFile()&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;CMake&nbsp;Package&amp;nbsp;(FindCoral.cmake)&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;New macro &lt;code&gt;CORAL_ADD_TEST( callee args )&lt;/code&gt; for defining tests that use the &lt;em&gt;Coral Launcher&lt;/em&gt; to invoke a &lt;em&gt;Coral component&lt;/em&gt; passing along a list&nbsp;of&amp;nbsp;arguments.&lt;/li&gt;
+&lt;li&gt;Better diagnostic messages for Coral Compiler errors caught&nbsp;from&amp;nbsp;CMake.&lt;/li&gt;
+&lt;li&gt;Revamped all CMake macros to work properly with&nbsp;nested&amp;nbsp;modules.
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;CORAL_DEFAULT_TARGET_PROPERTIES( target )&lt;/code&gt; is now&amp;nbsp;&lt;code&gt;CORAL_TARGET( target&nbsp;)&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;CORAL_MODULE_TARGET_PROPERTIES( target )&lt;/code&gt; is now&amp;nbsp;&lt;code&gt;CORAL_MODULE_TARGET( module target&nbsp;)&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;&nbsp;&lt;/li&gt;
+&lt;/ul&gt;&nbsp;&lt;h3&gt;Platform&amp;nbsp;Specific&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Added support for &lt;span class=&#8221;caps&#8221;&gt;LLVM&lt;/span&gt; Clang &lt;span class=&#8221;caps&#8221;&gt;3.0&lt;/span&gt;, which is shipped as the default compiler in Xcode&amp;nbsp;&lt;span&nbsp;class=&#8221;caps&#8221;&gt;4.2.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;Dropped support for compilers older than Visual Studio 2010 / &lt;span class=&#8221;caps&#8221;&gt;GCC&lt;/span&gt; &lt;span class=&#8221;caps&#8221;&gt;4.3.&lt;/span&gt; Starting this release, Coral requires minimal compiler support for C++11 (i.e. &lt;code&gt;static_assert&lt;/code&gt; and&amp;nbsp;&lt;span&nbsp;class=&#8221;caps&#8221;&gt;TR1&lt;/span&gt;).
+
+&lt;ul&gt;
+&lt;li&gt;Support for older compilers can be resumed in the future, if it proves to be&nbsp;a&amp;nbsp;must.&lt;/li&gt;
+&lt;/ul&gt;&nbsp;&lt;/li&gt;
+&lt;li&gt;Coral now builds with &lt;a href=&#8221;http://gcc.gnu.org/wiki/Visibility&#8221;&gt;GCC visibility attributes&lt;/a&gt; in all &lt;span&nbsp;class=&#8221;caps&#8221;&gt;GCC&lt;/span&gt;-compatible&amp;nbsp;compilers.
+
+&lt;ul&gt;
+&lt;li&gt;Flag &lt;code&gt;-fvisibility=hidden&lt;/code&gt; is added by default when using&amp;nbsp;&lt;span&nbsp;class=&#8221;caps&#8221;&gt;GCC.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;Now only the necessary symbols are exported when building a&amp;nbsp;&lt;span&nbsp;class=&#8221;caps&#8221;&gt;DSO.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;This should cut &lt;span class=&#8221;caps&#8221;&gt;DSO&lt;/span&gt; sizes by ~10% and significantly reduce module&nbsp;loading&amp;nbsp;times.&lt;/li&gt;
+&lt;/ul&gt;&nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+    <summary type="html">Coral <span class="caps">0.7</span> introduces annotations, dynamic types, more powerful native classes, a logging <span class="caps">API</span> and lots of improvements.</summary>
+  </entry>
+  <entry>
     <id>tag:libcoral.org,2011-07-22:/releases/coral/0_6_2.html</id>
-    <title type="html">Coral 0.6.2 Released</title>
+    <title type="html">Coral <span class="caps">0.6.2</span> Released</title>
     <published>2011-07-22T03:00:00Z</published>
     <updated>2011-07-22T03:00:00Z</updated>
     <link rel="alternate" href="http://libcoral.org/releases/coral/0_6_2.html"/>
-    <content type="html">&lt;p&gt;Fixed a reference counting bug where the reflector used by a co::Any could become invalid.&lt;/p&gt;
+    <content type="html">&lt;p&gt;Fixed a reference counting bug where the reflector used by a co::Any could&nbsp;become&amp;nbsp;invalid.&lt;/p&gt;
 
-&lt;h2&gt;Changes since v0.6.1&lt;/h2&gt;
+&lt;h2&gt;Changes&nbsp;since&amp;nbsp;v0.6.1&lt;/h2&gt;
 
-&lt;h3&gt;Coral Library (libcoral)&lt;/h3&gt;
+&lt;h3&gt;Coral&nbsp;Library&amp;nbsp;(libcoral)&lt;/h3&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Fixed a reference counting bug where the reflector used by a co::Any could become invalid.&lt;/li&gt;
+&lt;li&gt;Fixed a reference counting bug where the reflector used by a co::Any could&nbsp;become&amp;nbsp;invalid.&lt;/li&gt;
 &lt;/ul&gt;
 
 </content>
@@ -30,199 +195,179 @@
   </entry>
   <entry>
     <id>tag:libcoral.org,2011-07-15:/releases/coral/0_6_1.html</id>
-    <title type="html">Coral 0.6.1 Released</title>
+    <title type="html">Coral <span class="caps">0.6.1</span> Released</title>
     <published>2011-07-15T03:00:00Z</published>
     <updated>2011-07-15T03:00:00Z</updated>
     <link rel="alternate" href="http://libcoral.org/releases/coral/0_6_1.html"/>
-    <content type="html">&lt;p&gt;Updated to Lua 5.2 (beta) and fixed a bug in the cleanup sequence of Lua modules.&lt;/p&gt;
+    <content type="html">&lt;p&gt;Updated to Lua &lt;span class=&#8221;caps&#8221;&gt;5.2&lt;/span&gt; (beta) and fixed a bug in the cleanup sequence of&nbsp;Lua&amp;nbsp;modules.&lt;/p&gt;
 
-&lt;h2&gt;Changes since v0.6.0&lt;/h2&gt;
+&lt;h2&gt;Changes&nbsp;since&amp;nbsp;v0.6.0&lt;/h2&gt;
 
-&lt;h3&gt;Coral Library (libcoral)&lt;/h3&gt;
+&lt;h3&gt;Coral&nbsp;Library&amp;nbsp;(libcoral)&lt;/h3&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Improved the error message for when a type has no reflector even though its module is loaded (to report the module state).&lt;/li&gt;
+&lt;li&gt;Improved the error message for when a type has no reflector even though its module is loaded (to report the&nbsp;module&amp;nbsp;state).&lt;/li&gt;
 &lt;/ul&gt;
 
 
-&lt;h3&gt;Lua Module (modules/lua)&lt;/h3&gt;
+&lt;h3&gt;Lua&nbsp;Module&amp;nbsp;(modules/lua)&lt;/h3&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Updated the Lua core to version 5.2 beta.&lt;/li&gt;
-&lt;li&gt;Fixed a bug where the Lua GC was triggered too late in the modules&#8217; unloading sequence, causing problems with missing reflectors.&lt;/li&gt;
-&lt;li&gt;Removed support for handling the &lt;code&gt;dispose()&lt;/code&gt; event from a Lua ModulePart. Support for this event was troublesome as it caused mutual dependency problems in the system teardown sequence. Any cleanup that was done in the &lt;code&gt;dispose()&lt;/code&gt; event can be moved to the &lt;code&gt;disintegrate()&lt;/code&gt; event, or simply rely on the Lua garbage collector.&lt;/li&gt;
-&lt;li&gt;The Lua CG now performs a full collection cycle at the end of the &lt;code&gt;disintegrate()&lt;/code&gt; phase.&lt;/li&gt;
+&lt;li&gt;Updated the Lua core to version &lt;span&nbsp;class=&#8221;caps&#8221;&gt;5.2&lt;/span&gt;&amp;nbsp;beta.&lt;/li&gt;
+&lt;li&gt;Fixed a bug where the Lua &lt;span class=&#8221;caps&#8221;&gt;GC&lt;/span&gt; was triggered too late in the modules&amp;#8217; unloading sequence, causing problems with&nbsp;missing&amp;nbsp;reflectors.&lt;/li&gt;
+&lt;li&gt;Removed support for handling the &lt;code&gt;dispose()&lt;/code&gt; event from a Lua ModulePart. Support for this event was troublesome as it caused mutual dependency problems in the system teardown sequence. Any cleanup that was done in the &lt;code&gt;dispose()&lt;/code&gt; event can be moved to the &lt;code&gt;disintegrate()&lt;/code&gt; event, or simply rely on the Lua&nbsp;garbage&amp;nbsp;collector.&lt;/li&gt;
+&lt;li&gt;The Lua &lt;span class=&#8221;caps&#8221;&gt;CG&lt;/span&gt; now performs a full collection cycle at the end of the&nbsp;&lt;code&gt;disintegrate()&lt;/code&gt;&amp;nbsp;phase.&lt;/li&gt;
 &lt;/ul&gt;
 
 </content>
-    <summary type="html">Updated to Lua 5.2 (beta) and fixed a bug in the cleanup sequence of Lua modules.</summary>
+    <summary type="html">Updated to Lua <span class="caps">5.2</span> (beta) and fixed a bug in the cleanup sequence of Lua modules.</summary>
   </entry>
   <entry>
     <id>tag:libcoral.org,2011-06-22:/releases/coral/0_6_0.html</id>
-    <title type="html">Coral 0.6 Released</title>
+    <title type="html">Coral <span class="caps">0.6</span> Released</title>
     <published>2011-06-22T03:00:00Z</published>
     <updated>2011-06-22T03:00:00Z</updated>
     <link rel="alternate" href="http://libcoral.org/releases/coral/0_6_0.html"/>
-    <content type="html">&lt;p&gt;First major, architecturally stable beta release.&lt;/p&gt;
+    <content type="html">&lt;p&gt;First major, architecturally stable&nbsp;beta&amp;nbsp;release.&lt;/p&gt;
 
-&lt;h2&gt;Changes since v0.5.x&lt;/h2&gt;
+&lt;h2&gt;Changes&nbsp;since&amp;nbsp;v0.5.x&lt;/h2&gt;
 
-&lt;h3&gt;New Features&lt;/h3&gt;
+&lt;h3&gt;New&amp;nbsp;Features&lt;/h3&gt;&nbsp;&lt;ul&gt;
+&lt;li&gt;Coral now provides its own &lt;span class=&#8221;caps&#8221;&gt;RTTI&lt;/span&gt; system and no longer relies on the C++&amp;nbsp;&lt;span&nbsp;class=&#8221;caps&#8221;&gt;RTTI.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;Support for raising any Coral exception type via the reflection&amp;nbsp;&lt;span&nbsp;class=&#8221;caps&#8221;&gt;API.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;The Coral Compiler now generates &lt;em&gt;implementation templates&lt;/em&gt; for components and native classes. This can greatly reduce the manual cost of implementing new components&nbsp;in&amp;nbsp;C++.&lt;/li&gt;
+&lt;/ul&gt;&nbsp;&lt;h3&gt;Dropped&amp;nbsp;Features&lt;/h3&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Coral now provides its own RTTI system and no longer relies on the C++ RTTI.&lt;/li&gt;
-&lt;li&gt;Support for raising any Coral exception type via the reflection API.&lt;/li&gt;
-&lt;li&gt;The Coral Compiler now generates &lt;em&gt;implementation templates&lt;/em&gt; for components and native classes. This can greatly reduce the manual cost of implementing new components in C++.&lt;/li&gt;
+&lt;li&gt;Removed support for multiple interface inheritance, as it proved to be of little use and never essential. This allows for huge simplifications in the core and improved performance. Please note that multiple inheritance is still available in components through the ability of having&nbsp;multiple&amp;nbsp;facets.&lt;/li&gt;
+&lt;/ul&gt;&nbsp;&lt;h3&gt;General&amp;nbsp;Improvements&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Modules that install new loaders now get the new loaders immediately applied on themselves. As an important side effect, modules that use Lua may load the &amp;#8216;lua&amp;#8217; module during initialization to get their Lua&nbsp;ModulePart&amp;nbsp;loaded.&lt;/li&gt;
+&lt;li&gt;Simplifications to the &lt;span&nbsp;class=&#8221;caps&#8221;&gt;CSL&lt;/span&gt;&amp;nbsp;language:
+
+&lt;ul&gt;
+&lt;li&gt;Dropped the &lt;code&gt;attribute&lt;/code&gt; keyword. Attributes are now dubbed &lt;em&gt;fields&lt;/em&gt;, and are always declared as&nbsp;in&amp;nbsp;structs.&lt;/li&gt;
+&lt;li&gt;Interfaces only provide single inheritance, and it&amp;#8217;s now specified &#224; la Java, with &lt;code&gt;extends&lt;/code&gt; instead&nbsp;of&amp;nbsp;&lt;code&gt;:&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Empty interfaces with no inheritance and empty native classes are now&nbsp;considered&amp;nbsp;valid.&lt;/li&gt;
+&lt;/ul&gt;&nbsp;&lt;/li&gt;
+&lt;li&gt;The &lt;span class=&#8221;caps&#8221;&gt;API&lt;/span&gt; and documentation has been revised in order to improve its use of &lt;span class=&#8221;caps&#8221;&gt;CBSE&lt;/span&gt; terminology. New terms &amp;#8212; such as services, ports, facets, receptacles, and so on &amp;#8212; have been adopted in order to&nbsp;clear&amp;nbsp;ambiguities.&lt;/li&gt;
+&lt;li&gt;Revamped the type hierarchy to use&nbsp;single&amp;nbsp;inheritance.&lt;/li&gt;
+&lt;li&gt;Removed all uses of &lt;code&gt;dynamic_cast&lt;/code&gt;. Coral&amp;#8217;s own &lt;code&gt;co::cast&lt;/code&gt; is now used&nbsp;wherever&amp;nbsp;necessary.&lt;/li&gt;
+&lt;li&gt;The Coral Path is now guaranteed to contain only normalized,&nbsp;absolutized&amp;nbsp;pathnames.&lt;/li&gt;
+&lt;li&gt;The core now checks whether a dir is already in the Coral Path before adding a&nbsp;duplicate&amp;nbsp;entry.&lt;/li&gt;
+&lt;li&gt;Enums now use built-in reflectors instead of&nbsp;generated&amp;nbsp;ones.&lt;/li&gt;
+&lt;li&gt;Generated structs now provide a specialized &lt;code&gt;swap()&lt;/code&gt; function for&nbsp;improved&amp;nbsp;efficiency.&lt;/li&gt;
+&lt;li&gt;The project&amp;#8217;s internal documentation has&nbsp;been&amp;nbsp;improved.&lt;/li&gt;
 &lt;/ul&gt;
 
 
-&lt;h3&gt;Dropped Features&lt;/h3&gt;
+&lt;h3&gt;Coral&nbsp;Library&amp;nbsp;(libcoral)&lt;/h3&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Removed support for multiple interface inheritance, as it proved to be of little use and never essential. This allows for huge simplifications in the core and improved performance. Please note that multiple inheritance is still available in components through the ability of having multiple facets.&lt;/li&gt;
+&lt;li&gt;New type operators &lt;code&gt;co::cast()&lt;/code&gt;, &lt;code&gt;co::isA()&lt;/code&gt;&nbsp;and&amp;nbsp;&lt;code&gt;co::ensureIsA()&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;New function &lt;code&gt;co::findModuleFile()&lt;/code&gt; for locating resource files within&nbsp;a&amp;nbsp;module.&lt;/li&gt;
+&lt;li&gt;New method &lt;code&gt;co::IReflector::raise()&lt;/code&gt; for raising any Coral exception&nbsp;via&amp;nbsp;reflection.&lt;/li&gt;
+&lt;li&gt;It is now possible to query the concrete type of a &lt;code&gt;co::Exception&lt;/code&gt; through the virtual&nbsp;method&amp;nbsp;&lt;code&gt;getTypeName()&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Revised the names of all types&nbsp;and&amp;nbsp;methods.
+
+&lt;ul&gt;
+&lt;li&gt;Removed the &lt;em&gt;&amp;#8220;Component&amp;#8221;&lt;/em&gt; suffix from all&nbsp;component&amp;nbsp;names.&lt;/li&gt;
+&lt;li&gt;Prefixed all core interfaces with an &amp;#8220;I&amp;#8221;, to comply with&nbsp;standard&amp;nbsp;practice.&lt;/li&gt;
+&lt;li&gt;Renamed types and methods to improve terminology and make code shorter&nbsp;and&amp;nbsp;simpler.&lt;/li&gt;
+&lt;/ul&gt;&nbsp;&lt;/li&gt;
+&lt;li&gt;Refactored &lt;code&gt;co::RefVector&lt;/code&gt; and &lt;code&gt;co::Range&lt;/code&gt; (renamed from &lt;code&gt;co::ArrayRange&lt;/code&gt;) to maximize reusability while providing a cleaner&amp;nbsp;&lt;span&nbsp;class=&#8221;caps&#8221;&gt;API.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;Class &lt;code&gt;co::Range&lt;/code&gt; is now accompanied by a mini&nbsp;template&amp;nbsp;library:
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;co::copy()&lt;/code&gt; copies the elements from a &amp;#8220;source&amp;#8221; range into a&nbsp;&amp;#8220;destination&amp;#8221;&amp;nbsp;range.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;co::assign()&lt;/code&gt; assigns the contents of a &amp;#8220;source&amp;#8221; range to a&nbsp;std::vector-compatible&amp;nbsp;container.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;co::binarySearch()&lt;/code&gt; performs a binary search on a sorted range using a comparison function. This has replaced&nbsp;method&amp;nbsp;&lt;code&gt;co::RefVector::sortedFind()&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;&nbsp;&lt;/li&gt;
+&lt;li&gt;Revamped &lt;span class=&#8221;caps&#8221;&gt;API&lt;/span&gt; for manipulating object services (through its facets&nbsp;and&amp;nbsp;receptacles).
+
+&lt;ul&gt;
+&lt;li&gt;Method &lt;code&gt;co::IObject::getService&amp;lt;T&amp;gt;()&lt;/code&gt; can be used to obtain a service by type, and now works properly even for dynamic service providers (e.g. components implemented&nbsp;in&amp;nbsp;Lua).&lt;/li&gt;
+&lt;li&gt;New overload &lt;code&gt;co::IObject::getService( name )&lt;/code&gt; for obtaining a service by its&nbsp;port&amp;nbsp;name.&lt;/li&gt;
+&lt;li&gt;New overload &lt;code&gt;co::IObject::setService( receptacleName, service )&lt;/code&gt; for setting a receptacle&nbsp;by&amp;nbsp;name.&lt;/li&gt;
+&lt;/ul&gt;&nbsp;&lt;/li&gt;
+&lt;li&gt;New enum &lt;code&gt;co.MemberKind&lt;/code&gt; enumerates all kinds of &lt;em&gt;members&lt;/em&gt; in the&nbsp;type&amp;nbsp;system.&lt;/li&gt;
+&lt;li&gt;New field &lt;code&gt;kind&lt;/code&gt;, of type &lt;code&gt;co.MemberKind&lt;/code&gt;, added to&nbsp;interface&amp;nbsp;&lt;code&gt;co.IMember&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;New traits in C++ for testing whether a type is a subtype&nbsp;of&amp;nbsp;another.&lt;/li&gt;
+&lt;li&gt;Refactored most &lt;span class=&#8221;caps&#8221;&gt;OS&lt;/span&gt;-specific code from the Coral executables into the reserved header file &lt;code&gt;co/reserved/OS.h&lt;/code&gt;. The old &lt;span class=&#8221;caps&#8221;&gt;API&lt;/span&gt; in &lt;code&gt;co/reserved/FileLookup.h&lt;/code&gt; has been replaced by functions&nbsp;in&amp;nbsp;&lt;code&gt;OS.h&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Fixed a potential &lt;span class=&#8221;caps&#8221;&gt;ABI&lt;/span&gt; clash problem between modules with&nbsp;homonymous&amp;nbsp;components.
+
+&lt;ul&gt;
+&lt;li&gt;Components must always be implemented within their&nbsp;module&amp;#8217;s&amp;nbsp;namespace.&lt;/li&gt;
+&lt;li&gt;Macro &lt;code&gt;CORAL_EXPORT_COMPONENT()&lt;/code&gt; must now be called from within the&nbsp;module&amp;#8217;s&amp;nbsp;namespace.&lt;/li&gt;
+&lt;/ul&gt;&nbsp;&lt;/li&gt;
+&lt;li&gt;Reduced the memory footprint of &lt;code&gt;co::Any&lt;/code&gt; with better&nbsp;data&amp;nbsp;packing.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;co::Any&lt;/code&gt; now provides a general&nbsp;&lt;code&gt;swap()&lt;/code&gt;&amp;nbsp;method.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;co::RefPtr&lt;/code&gt; now provides an &lt;span class=&#8221;caps&#8221;&gt;ADL&lt;/span&gt;-based overload for&nbsp;&lt;code&gt;swap()&lt;/code&gt;&amp;nbsp;calls.&lt;/li&gt;
+&lt;li&gt;Fixed a bug in &lt;code&gt;co::Any::makeOut()&lt;/code&gt; when preserving a&nbsp;const&amp;nbsp;string.&lt;/li&gt;
+&lt;li&gt;Fixed a bug in the search order of native module libraries that caused a &amp;#8220;release&amp;#8221; library to be used in debug mode, even when a &amp;#8220;debug&amp;#8221; library&nbsp;was&amp;nbsp;present.&lt;/li&gt;
+&lt;li&gt;Fixed a bug where the list of sub-types of an interface could contain dangling pointers after a failed attempt to load&nbsp;a&amp;nbsp;subtype.&lt;/li&gt;
+&lt;li&gt;Fixed a bug in &lt;code&gt;co/Coral.h&lt;/code&gt; that would cause the wrong &lt;code&gt;co::getService()&lt;/code&gt; overload to&nbsp;be&amp;nbsp;called.&lt;/li&gt;
 &lt;/ul&gt;
 
 
-&lt;h3&gt;General Improvements&lt;/h3&gt;
+&lt;h3&gt;Coral&nbsp;Compiler&amp;nbsp;(coralc)&lt;/h3&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Modules that install new loaders now get the new loaders immediately applied on themselves. As an important side effect, modules that use Lua may load the &#8216;lua&#8217; module during initialization to get their Lua ModulePart loaded.&lt;/li&gt;
-&lt;li&gt;Simplifications to the CSL language:
-
-&lt;ul&gt;
-&lt;li&gt;Dropped the &lt;code&gt;attribute&lt;/code&gt; keyword. Attributes are now dubbed &lt;em&gt;fields&lt;/em&gt;, and are always declared as in structs.&lt;/li&gt;
-&lt;li&gt;Interfaces only provide single inheritance, and it&#8217;s now specified &#224; la Java, with &lt;code&gt;extends&lt;/code&gt; instead of &lt;code&gt;:&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Empty interfaces with no inheritance and empty native classes are now considered valid.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;The API and documentation has been revised in order to improve its use of CBSE terminology. New terms &#8212; such as services, ports, facets, receptacles, and so on &#8212; have been adopted in order to clear ambiguities.&lt;/li&gt;
-&lt;li&gt;Revamped the type hierarchy to use single inheritance.&lt;/li&gt;
-&lt;li&gt;Removed all uses of &lt;code&gt;dynamic_cast&lt;/code&gt;. Coral&#8217;s own &lt;code&gt;co::cast&lt;/code&gt; is now used wherever necessary.&lt;/li&gt;
-&lt;li&gt;The Coral Path is now guaranteed to contain only normalized, absolutized pathnames.&lt;/li&gt;
-&lt;li&gt;The core now checks whether a dir is already in the Coral Path before adding a duplicate entry.&lt;/li&gt;
-&lt;li&gt;Enums now use built-in reflectors instead of generated ones.&lt;/li&gt;
-&lt;li&gt;Generated structs now provide a specialized &lt;code&gt;swap()&lt;/code&gt; function for improved efficiency.&lt;/li&gt;
-&lt;li&gt;The project&#8217;s internal documentation has been improved.&lt;/li&gt;
+&lt;li&gt;When generating code for a module, implementation templates are now generated for components and native classes. Each type produces a &lt;code&gt;.cpp&lt;/code&gt; file, in the &lt;code&gt;generated/@templates&lt;/code&gt; subdir, that can be easily copied and used in&nbsp;any&amp;nbsp;project.&lt;/li&gt;
+&lt;li&gt;The Coral Compiler now re-generates all sources if at least one generated file is missing &amp;#8212; even when the coralc cache file is present (solves a problem with IDEs that delete the sources, but not the&nbsp;cache&amp;nbsp;file).&lt;/li&gt;
+&lt;li&gt;The compiler now always generates mappings for the intrinsic Coral &lt;span&nbsp;class=&#8221;caps&#8221;&gt;API&lt;/span&gt;&amp;nbsp;dependencies.&lt;/li&gt;
+&lt;li&gt;New option &lt;code&gt;&#8211;ignoredupes&lt;/code&gt; for suppressing warnings about clashing types in the&nbsp;Coral&amp;nbsp;Path.&lt;/li&gt;
+&lt;li&gt;Updated reflector generation rules for&nbsp;exception&amp;nbsp;types.&lt;/li&gt;
+&lt;li&gt;Fixed a bug that caused the Coral Compiler to miss necessary #include&amp;#8217;s in some situations (involving&nbsp;interface&amp;nbsp;inheritance).&lt;/li&gt;
 &lt;/ul&gt;
 
 
-&lt;h3&gt;Coral Library (libcoral)&lt;/h3&gt;
+&lt;h3&gt;Coral&nbsp;Launcher&amp;nbsp;(coral)&lt;/h3&gt;
 
 &lt;ul&gt;
-&lt;li&gt;New type operators &lt;code&gt;co::cast()&lt;/code&gt;, &lt;code&gt;co::isA()&lt;/code&gt; and &lt;code&gt;co::ensureIsA()&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;New function &lt;code&gt;co::findModuleFile()&lt;/code&gt; for locating resource files within a module.&lt;/li&gt;
-&lt;li&gt;New method &lt;code&gt;co::IReflector::raise()&lt;/code&gt; for raising any Coral exception via reflection.&lt;/li&gt;
-&lt;li&gt;It is now possible to query the concrete type of a &lt;code&gt;co::Exception&lt;/code&gt; through the virtual method &lt;code&gt;getTypeName()&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Revised the names of all types and methods.
-
-&lt;ul&gt;
-&lt;li&gt;Removed the &lt;em&gt;&#8221;Component&#8221;&lt;/em&gt; suffix from all component names.&lt;/li&gt;
-&lt;li&gt;Prefixed all core interfaces with an &#8220;I&#8221;, to comply with standard practice.&lt;/li&gt;
-&lt;li&gt;Renamed types and methods to improve terminology and make code shorter and simpler.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Refactored &lt;code&gt;co::RefVector&lt;/code&gt; and &lt;code&gt;co::Range&lt;/code&gt; (renamed from &lt;code&gt;co::ArrayRange&lt;/code&gt;) to maximize reusability while providing a cleaner API.&lt;/li&gt;
-&lt;li&gt;Class &lt;code&gt;co::Range&lt;/code&gt; is now accompanied by a mini template library:
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;co::copy()&lt;/code&gt; copies the elements from a &#8220;source&#8221; range into a &#8220;destination&#8221; range.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;co::assign()&lt;/code&gt; assigns the contents of a &#8220;source&#8221; range to a std::vector-compatible container.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;co::binarySearch()&lt;/code&gt; performs a binary search on a sorted range using a comparison function. This has replaced method &lt;code&gt;co::RefVector::sortedFind()&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Revamped API for manipulating object services (through its facets and receptacles).
-
-&lt;ul&gt;
-&lt;li&gt;Method &lt;code&gt;co::IObject::getService&amp;lt;T&amp;gt;()&lt;/code&gt; can be used to obtain a service by type, and now works properly even for dynamic service providers (e.g. components implemented in Lua).&lt;/li&gt;
-&lt;li&gt;New overload &lt;code&gt;co::IObject::getService( name )&lt;/code&gt; for obtaining a service by its port name.&lt;/li&gt;
-&lt;li&gt;New overload &lt;code&gt;co::IObject::setService( receptacleName, service )&lt;/code&gt; for setting a receptacle by name.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;New enum &lt;code&gt;co.MemberKind&lt;/code&gt; enumerates all kinds of &lt;em&gt;members&lt;/em&gt; in the type system.&lt;/li&gt;
-&lt;li&gt;New field &lt;code&gt;kind&lt;/code&gt;, of type &lt;code&gt;co.MemberKind&lt;/code&gt;, added to interface &lt;code&gt;co.IMember&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;New traits in C++ for testing whether a type is a subtype of another.&lt;/li&gt;
-&lt;li&gt;Refactored most OS-specific code from the Coral executables into the reserved header file &lt;code&gt;co/reserved/OS.h&lt;/code&gt;. The old API in &lt;code&gt;co/reserved/FileLookup.h&lt;/code&gt; has been replaced by functions in &lt;code&gt;OS.h&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Fixed a potential ABI clash problem between modules with homonymous components.
-
-&lt;ul&gt;
-&lt;li&gt;Components must always be implemented within their module&#8217;s namespace.&lt;/li&gt;
-&lt;li&gt;Macro &lt;code&gt;CORAL_EXPORT_COMPONENT()&lt;/code&gt; must now be called from within the module&#8217;s namespace.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Reduced the memory footprint of &lt;code&gt;co::Any&lt;/code&gt; with better data packing.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;co::Any&lt;/code&gt; now provides a general &lt;code&gt;swap()&lt;/code&gt; method.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;co::RefPtr&lt;/code&gt; now provides an ADL-based overload for &lt;code&gt;swap()&lt;/code&gt; calls.&lt;/li&gt;
-&lt;li&gt;Fixed a bug in &lt;code&gt;co::Any::makeOut()&lt;/code&gt; when preserving a const string.&lt;/li&gt;
-&lt;li&gt;Fixed a bug in the search order of native module libraries that caused a &#8220;release&#8221; library to be used in debug mode, even when a &#8220;debug&#8221; library was present.&lt;/li&gt;
-&lt;li&gt;Fixed a bug where the list of sub-types of an interface could contain dangling pointers after a failed attempt to load a subtype.&lt;/li&gt;
-&lt;li&gt;Fixed a bug in &lt;code&gt;co/Coral.h&lt;/code&gt; that would cause the wrong &lt;code&gt;co::getService()&lt;/code&gt; overload to be called.&lt;/li&gt;
+&lt;li&gt;Option &lt;code&gt;&#8211;mode&lt;/code&gt; is now&nbsp;case&amp;nbsp;insensitive.&lt;/li&gt;
+&lt;li&gt;Path entries passed via command-line are now added &lt;em&gt;before&lt;/em&gt; those in the &lt;code&gt;CORAL_PATH&lt;/code&gt;&nbsp;environment&amp;nbsp;variable.&lt;/li&gt;
+&lt;li&gt;New configuration file &lt;code&gt;coral.properties&lt;/code&gt;, useful for deploying applications. If placed alongside the launcher executable, this file can be used to specify parameters such as the Coral Path, execution mode (debug or release), and extra arguments to the&nbsp;invoked&amp;nbsp;applications.&lt;/li&gt;
 &lt;/ul&gt;
 
 
-&lt;h3&gt;Coral Compiler (coralc)&lt;/h3&gt;
+&lt;h3&gt;Lua&nbsp;Module&amp;nbsp;(modules/lua)&lt;/h3&gt;
 
 &lt;ul&gt;
-&lt;li&gt;When generating code for a module, implementation templates are now generated for components and native classes. Each type produces a &lt;code&gt;.cpp&lt;/code&gt; file, in the &lt;code&gt;generated/@templates&lt;/code&gt; subdir, that can be easily copied and used in any project.&lt;/li&gt;
-&lt;li&gt;The Coral Compiler now re-generates all sources if at least one generated file is missing &#8212; even when the coralc cache file is present (solves a problem with IDEs that delete the sources, but not the cache file).&lt;/li&gt;
-&lt;li&gt;The compiler now always generates mappings for the intrinsic Coral API dependencies.&lt;/li&gt;
-&lt;li&gt;New option &lt;code&gt;&#8211;ignoredupes&lt;/code&gt; for suppressing warnings about clashing types in the Coral Path.&lt;/li&gt;
-&lt;li&gt;Updated reflector generation rules for exception types.&lt;/li&gt;
-&lt;li&gt;Fixed a bug that caused the Coral Compiler to miss necessary #include&#8217;s in some situations (involving interface inheritance).&lt;/li&gt;
+&lt;li&gt;Added &lt;span class=&#8221;caps&#8221;&gt;LOOP&lt;/span&gt;-stye &lt;code&gt;__init()&lt;/code&gt; constructors to&nbsp;Lua&amp;nbsp;components.&lt;/li&gt;
+&lt;li&gt;New function &lt;code&gt;co.typeOf()&lt;/code&gt; to query the type of a Coral value&nbsp;from&amp;nbsp;Lua.&lt;/li&gt;
+&lt;li&gt;New function &lt;code&gt;co.raise()&lt;/code&gt; for raising any Coral exception type&nbsp;from&amp;nbsp;Lua.&lt;/li&gt;
+&lt;li&gt;New function &lt;code&gt;co.findModuleFile()&lt;/code&gt; for locating resource files within&nbsp;a&amp;nbsp;module.&lt;/li&gt;
+&lt;li&gt;Revamped&nbsp;interface&amp;nbsp;&lt;code&gt;lua.IState&lt;/code&gt;.
+
+&lt;ul&gt;
+&lt;li&gt;All lower-level methods to exchange values with the Lua stack, load and call chunks have been replaced by a single higher-level&nbsp;method,&amp;nbsp;&lt;code&gt;callFunction()&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;New method &lt;code&gt;collectGarbage()&lt;/code&gt; to run a full cycle of the Lua&nbsp;garbage&amp;nbsp;collector.&lt;/li&gt;
+&lt;/ul&gt;&nbsp;&lt;/li&gt;
+&lt;li&gt;Simplified the internal structure of Lua components (objects now use a single table per instance, instead of a table&nbsp;per&amp;nbsp;facet).&lt;/li&gt;
+&lt;li&gt;Exceptions thrown across Lua (i.e. C++ -&gt; Lua -&gt; C++) now retain their original type, instead of always being converted to&nbsp;a&amp;nbsp;&lt;code&gt;lua::Exception&lt;/code&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 
 
-&lt;h3&gt;Coral Launcher (coral)&lt;/h3&gt;
+&lt;h3&gt;CMake&nbsp;Package&amp;nbsp;(FindCoral.cmake)&lt;/h3&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Option &lt;code&gt;&#8211;mode&lt;/code&gt; is now case insensitive.&lt;/li&gt;
-&lt;li&gt;Path entries passed via command-line are now added &lt;em&gt;before&lt;/em&gt; those in the &lt;code&gt;CORAL_PATH&lt;/code&gt; environment variable.&lt;/li&gt;
-&lt;li&gt;New configuration file &lt;code&gt;coral.properties&lt;/code&gt;, useful for deploying applications. If placed alongside the launcher executable, this file can be used to specify parameters such as the Coral Path, execution mode (debug or release), and extra arguments to the invoked applications.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;h3&gt;Lua Module (modules/lua)&lt;/h3&gt;
+&lt;li&gt;New CMake variable &lt;code&gt;CORAL_LAUNCHER_FLAGS&lt;/code&gt; can be used to pass additional flags to the &lt;code&gt;coral&lt;/code&gt; executable whenever it&amp;#8217;s invoked by a rule created by one of the&nbsp;CORAL_*()&amp;nbsp;macros.&lt;/li&gt;
+&lt;li&gt;New macro &lt;code&gt;CORAL_TEST_ENVIRONMENT()&lt;/code&gt; allows a CMake test to locate the Coral library even if it is not in the system path (by setting &lt;span class=&#8221;caps&#8221;&gt;OS&lt;/span&gt;-specific environment variables for&nbsp;the&amp;nbsp;test).&lt;/li&gt;
+&lt;li&gt;Duplicate &lt;span class=&#8221;caps&#8221;&gt;CSL&lt;/span&gt; definitions in the Coral Path are now ignored. This used to be an error, but should no longer be a problem with the Coral compiler&amp;#8217;s new&nbsp;lookup&amp;nbsp;strategy.&lt;/li&gt;
+&lt;li&gt;CMake targets created with &lt;code&gt;CORAL_BUILD_CSL_MODULE&lt;/code&gt; are now &lt;code&gt;EXCLUDE_FROM_ALL&lt;/code&gt;&nbsp;by&amp;nbsp;default.&lt;/li&gt;
+&lt;/ul&gt;&nbsp;&lt;h3&gt;Platform&amp;nbsp;Specific&lt;/h3&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Added LOOP-stye &lt;code&gt;__init()&lt;/code&gt; constructors to Lua components.&lt;/li&gt;
-&lt;li&gt;New function &lt;code&gt;co.typeOf()&lt;/code&gt; to query the type of a Coral value from Lua.&lt;/li&gt;
-&lt;li&gt;New function &lt;code&gt;co.raise()&lt;/code&gt; for raising any Coral exception type from Lua.&lt;/li&gt;
-&lt;li&gt;New function &lt;code&gt;co.findModuleFile()&lt;/code&gt; for locating resource files within a module.&lt;/li&gt;
-&lt;li&gt;Revamped interface &lt;code&gt;lua.IState&lt;/code&gt;.
-
-&lt;ul&gt;
-&lt;li&gt;All lower-level methods to exchange values with the Lua stack, load and call chunks have been replaced by a single higher-level method, &lt;code&gt;callFunction()&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;New method &lt;code&gt;collectGarbage()&lt;/code&gt; to run a full cycle of the Lua garbage collector.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Simplified the internal structure of Lua components (objects now use a single table per instance, instead of a table per facet).&lt;/li&gt;
-&lt;li&gt;Exceptions thrown across Lua (i.e. C++ -&gt; Lua -&gt; C++) now retain their original type, instead of always being converted to a &lt;code&gt;lua::Exception&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;h3&gt;CMake Package (FindCoral.cmake)&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;New CMake variable &lt;code&gt;CORAL_LAUNCHER_FLAGS&lt;/code&gt; can be used to pass additional flags to the &lt;code&gt;coral&lt;/code&gt; executable whenever it&#8217;s invoked by a rule created by one of the CORAL_*() macros.&lt;/li&gt;
-&lt;li&gt;New macro &lt;code&gt;CORAL_TEST_ENVIRONMENT()&lt;/code&gt; allows a CMake test to locate the Coral library even if it is not in the system path (by setting OS-specific environment variables for the test).&lt;/li&gt;
-&lt;li&gt;Duplicate CSL definitions in the Coral Path are now ignored. This used to be an error, but should no longer be a problem with the Coral compiler&#8217;s new lookup strategy.&lt;/li&gt;
-&lt;li&gt;CMake targets created with &lt;code&gt;CORAL_BUILD_CSL_MODULE&lt;/code&gt; are now &lt;code&gt;EXCLUDE_FROM_ALL&lt;/code&gt; by default.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;h3&gt;Platform Specific&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;MacOSX: dropped support for module libs with the &lt;code&gt;.dylib&lt;/code&gt; extension. All UNIX systems must use &lt;code&gt;.so&lt;/code&gt; now.&lt;/li&gt;
-&lt;li&gt;UNIX: added method &lt;code&gt;co::LibraryManager::setNoDlClose()&lt;/code&gt; to disable &lt;code&gt;dlclose()&lt;/code&gt; calls when unloading modules. This is useful for tests run through tools such as Valgrind, which get confused when a shared object is unloaded.&lt;/li&gt;
-&lt;li&gt;Windows:
-
-&lt;ul&gt;
-&lt;li&gt;Lots of changes to add support for MinGW.&lt;/li&gt;
-&lt;li&gt;Fixed a bug in the launcher front-end (coral.exe) where it would not correctly determine the presence of a launcher executable (launcher.exe).&lt;/li&gt;
-&lt;li&gt;Fix for inconsistent usage of dir separators.&lt;/li&gt;
-&lt;li&gt;Fixes for many warnings on MSVC.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
+&lt;li&gt;MacOSX: dropped support for module libs with the &lt;code&gt;.dylib&lt;/code&gt; extension. All &lt;span class=&#8221;caps&#8221;&gt;UNIX&lt;/span&gt; systems must use&nbsp;&lt;code&gt;.so&lt;/code&gt;&amp;nbsp;now.&lt;/li&gt;
+&lt;li&gt;UNIX: added method &lt;code&gt;co::LibraryManager::setNoDlClose()&lt;/code&gt; to disable &lt;code&gt;dlclose()&lt;/code&gt; calls when unloading modules. This is useful for tests run through tools such as Valgrind, which get confused when a shared object&nbsp;is&amp;nbsp;unloaded.&lt;/li&gt;
+&lt;li&gt;Windows:&nbsp;&lt;ul&gt;
+&lt;li&gt;Lots of changes to add support&nbsp;for&amp;nbsp;MinGW.&lt;/li&gt;
+&lt;li&gt;Fixed a bug in the launcher front-end (coral.exe) where it would not correctly determine the presence of a launcher&nbsp;executable&amp;nbsp;(launcher.exe).&lt;/li&gt;
+&lt;li&gt;Fix for inconsistent usage of&nbsp;dir&amp;nbsp;separators.&lt;/li&gt;
+&lt;li&gt;Fixes for many warnings on&amp;nbsp;&lt;span&nbsp;class=&#8221;caps&#8221;&gt;MSVC.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;&nbsp;&lt;/li&gt;
 &lt;/ul&gt;
 
 </content>
@@ -230,82 +375,40 @@
   </entry>
   <entry>
     <id>tag:libcoral.org,2011-01-10:/releases/coral/0_5_1.html</id>
-    <title type="html">Coral 0.5.1 Released</title>
+    <title type="html">Coral <span class="caps">0.5.1</span> Released</title>
     <published>2011-01-10T02:00:00Z</published>
     <updated>2011-01-10T02:00:00Z</updated>
     <link rel="alternate" href="http://libcoral.org/releases/coral/0_5_1.html"/>
-    <content type="html">&lt;p&gt;This is a maintenance release. It fixes bugs and some SDK usability issues found in the original release.&lt;/p&gt;
+    <content type="html">&lt;p&gt;This is a maintenance release. It fixes bugs and some &lt;span class=&#8221;caps&#8221;&gt;SDK&lt;/span&gt; usability issues found in the&nbsp;original&amp;nbsp;release.&lt;/p&gt;
 
-&lt;h2&gt;Changes since v0.5.0&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Updated Lua to version 5.2 alpha.&lt;/li&gt;
-&lt;li&gt;Updated mapping rules: output array parameters are now passed by reference instead of pointers, and cannot be null.&lt;/li&gt;
-&lt;li&gt;The CMake target &#8216;docs&#8217; now also compiles the general documentation (requires nanoc).&lt;/li&gt;
-&lt;li&gt;Improvements for the API documentation (cosmetic changes, syntax highlighting for Lua code, etc.)&lt;/li&gt;
-&lt;li&gt;Many small bug fixes, specially on Windows.&lt;/li&gt;
-&lt;li&gt;Fixed handling of Windows-style (CRLF) line-endings in CSL files.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;RelWithDebInfo&lt;/code&gt; builds are now considered &#8216;release&#8217; builds, instead of &#8216;debug&#8217;.&lt;/li&gt;
-&lt;li&gt;Fix for a segfault related to lazy-loading a service from an invalid module.&lt;/li&gt;
-&lt;li&gt;New template function &lt;code&gt;co::Any::createComplexValue&amp;lt;T&amp;gt;()&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Fixed bugs in &lt;code&gt;co::Any&lt;/code&gt;&#8217;s temporary objects API.&lt;/li&gt;
-&lt;li&gt;Fixed potential (although unconfirmed) uninitialized memory problems in the &lt;code&gt;co::Any&lt;/code&gt; constructors, detected by valgrind when running with optimizations.&lt;/li&gt;
-&lt;li&gt;Improved SDK packaging:
+&lt;h2&gt;Changes&nbsp;since&amp;nbsp;v0.5.0&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Universal support for simultaneous Debug/Release installs of the SDK in the same &lt;code&gt;CORAL_ROOT&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;A safe &lt;code&gt;CMAKE_INSTALL_PREFIX&lt;/code&gt; is now enforced on all platforms.&lt;/li&gt;
-&lt;li&gt;The Windows Debug package now includes PDB files.&lt;/li&gt;
-&lt;li&gt;Renamed the launcher executable from &lt;code&gt;coral&lt;/code&gt; to &lt;code&gt;launcher&lt;/code&gt; to solve PDB name clashes on Windows.&lt;/li&gt;
-&lt;li&gt;The core library now gets a &#8216;_debug&#8217; suffix when built in debug mode.&lt;/li&gt;
-&lt;li&gt;The &lt;code&gt;coral&lt;/code&gt; and &lt;code&gt;coralc&lt;/code&gt; executables are now simple C++ programs (instead of shell scripts).&lt;/li&gt;
-&lt;li&gt;It is now possible to request the &lt;code&gt;coral&lt;/code&gt; executable to start the framework in either Debug or Release mode via the command-line option &#8216;&#8211;mode&#8217;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-
-</content>
-    <summary type="html">Maintenance release with bug fixes and improved SDK usability.</summary>
-  </entry>
-  <entry>
-    <id>tag:libcoral.org,2010-11-10:/releases/coral/0_5_0.html</id>
-    <title type="html">Coral 0.5 Released</title>
-    <published>2010-11-10T02:00:00Z</published>
-    <updated>2010-11-10T02:00:00Z</updated>
-    <link rel="alternate" href="http://libcoral.org/releases/coral/0_5_0.html"/>
-    <content type="html">&lt;p&gt;This is the first public version of Coral. A &lt;em&gt;very early&lt;/em&gt;, unstable beta release &#8212; although for practical purposes also a &#8220;feature-complete&#8221; release. The first stable version will be v1.0.0, which is still a few months away. Until then, we are going to work on the documentation, improve the usability, write more tests, improve the stabilty and robustness of the framework, write performance tests, profile and then improve the performance of the framework.&lt;/p&gt;
-
-&lt;h2&gt;Changes since v0.4.x&lt;/h2&gt;
+&lt;li&gt;Updated Lua to version &lt;span&nbsp;class=&#8221;caps&#8221;&gt;5.2&lt;/span&gt;&amp;nbsp;alpha.&lt;/li&gt;
+&lt;li&gt;Updated mapping rules: output array parameters are now passed by reference instead of pointers, and cannot&nbsp;be&amp;nbsp;null.&lt;/li&gt;
+&lt;li&gt;The CMake target &amp;#8216;docs&amp;#8217; now also compiles the general documentation&nbsp;(requires&amp;nbsp;nanoc).&lt;/li&gt;
+&lt;li&gt;Improvements for the &lt;span class=&#8221;caps&#8221;&gt;API&lt;/span&gt; documentation (cosmetic changes, syntax highlighting for Lua&nbsp;code,&amp;nbsp;etc.)&lt;/li&gt;
+&lt;li&gt;Many small bug fixes, specially&nbsp;on&amp;nbsp;Windows.&lt;/li&gt;
+&lt;li&gt;Fixed handling of Windows-style (CRLF) line-endings in &lt;span&nbsp;class=&#8221;caps&#8221;&gt;CSL&lt;/span&gt;&amp;nbsp;files.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;RelWithDebInfo&lt;/code&gt; builds are now considered &amp;#8216;release&amp;#8217; builds, instead&nbsp;of&amp;nbsp;&amp;#8216;debug&amp;#8217;.&lt;/li&gt;
+&lt;li&gt;Fix for a segfault related to lazy-loading a service from an&nbsp;invalid&amp;nbsp;module.&lt;/li&gt;
+&lt;li&gt;New template&nbsp;function&amp;nbsp;&lt;code&gt;co::Any::createComplexValue&amp;lt;T&amp;gt;()&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Fixed bugs in &lt;code&gt;co::Any&lt;/code&gt;&amp;#8217;s temporary objects&amp;nbsp;&lt;span&nbsp;class=&#8221;caps&#8221;&gt;API.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;Fixed potential (although unconfirmed) uninitialized memory problems in the &lt;code&gt;co::Any&lt;/code&gt; constructors, detected by valgrind when running&nbsp;with&amp;nbsp;optimizations.&lt;/li&gt;
+&lt;li&gt;Improved &lt;span&nbsp;class=&#8221;caps&#8221;&gt;SDK&lt;/span&gt;&amp;nbsp;packaging:
 
 &lt;ul&gt;
-&lt;li&gt;New nomenclature for server/client interfaces:
-
-&lt;ul&gt;
-&lt;li&gt;Server (or &#8220;provided&#8221;) interfaces are now called &#8220;facets&#8221;.&lt;/li&gt;
-&lt;li&gt;Client (or &#8220;required&#8221;) interfaces are now called &#8220;receptacles&#8221;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;The CSL keyword for specifying receptacles changed from &#8220;requires&#8221; to &#8220;receives&#8221;.&lt;/li&gt;
-&lt;li&gt;Many improvements to comments and error messages.&lt;/li&gt;
-&lt;li&gt;The compiler cache file is now deleted in a &#8220;make clean&#8221;.&lt;/li&gt;
-&lt;li&gt;The Lua module now features an embedded copy of LuaSocket, ported to Lua 5.2.&lt;/li&gt;
-&lt;li&gt;New utility Lua package: &#8220;printData&#8221;, returns a function for printing data structures.&lt;/li&gt;
-&lt;li&gt;Fixed a bug in the Lua module related to accessing a &lt;code&gt;co::Component&lt;/code&gt; as a member attribute from Lua.&lt;/li&gt;
-&lt;li&gt;Several tweaks and small fixes.&lt;/li&gt;
-&lt;li&gt;Native module libraries are now loaded with global symbols sharing enabled.&lt;/li&gt;
-&lt;li&gt;createModulePart() is now generated into the module&#8217;s namespace to solve a bug in module loading.&lt;/li&gt;
-&lt;li&gt;The Coral compiler can now be used to generate documentation for a module (as a set of input files for Doxygen).&lt;/li&gt;
-&lt;li&gt;Improved the parsing of documentation in CSL files.&lt;/li&gt;
-&lt;li&gt;Forced AntLR to open all files in text mode, instead of binary (solves a problem with line endings).&lt;/li&gt;
-&lt;li&gt;New CMake function &lt;code&gt;CORAL_GENERATE_DOX&lt;/code&gt;, for running &lt;code&gt;coralc&lt;/code&gt; to generate documentation.&lt;/li&gt;
-&lt;li&gt;New CMake function &lt;code&gt;CORAL_BUILD_CSL_MODULE&lt;/code&gt;, to build a module comprised only of CSL files.&lt;/li&gt;
-&lt;li&gt;The internal CMake macros &lt;code&gt;CORAL_DEFAULT_TARGET_PROPERTIES&lt;/code&gt; and &lt;code&gt;CORAL_MODULE_TARGET_PROPERTIES&lt;/code&gt; are now public.&lt;/li&gt;
-&lt;li&gt;Many general improvements to documentation.&lt;/li&gt;
-&lt;li&gt;Enhanced the aesthetics and the organization of documentation in many ways.&lt;/li&gt;
-&lt;li&gt;Removed the &#8220;intermediate&#8221; exception types &lt;code&gt;co::CoreException&lt;/code&gt; and &lt;code&gt;co::UserException&lt;/code&gt;. Now all CSL exceptions inherit directly from &lt;code&gt;co::Exception&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Complete revamp of the documentation, now generated using &lt;code&gt;coralc&lt;/code&gt; and &lt;code&gt;nanoc&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Universal support for simultaneous Debug/Release installs of the &lt;span class=&#8221;caps&#8221;&gt;SDK&lt;/span&gt; in the&nbsp;same&amp;nbsp;&lt;code&gt;CORAL_ROOT&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;A safe &lt;code&gt;CMAKE_INSTALL_PREFIX&lt;/code&gt; is now enforced on&nbsp;all&amp;nbsp;platforms.&lt;/li&gt;
+&lt;li&gt;The Windows Debug package now includes &lt;span&nbsp;class=&#8221;caps&#8221;&gt;PDB&lt;/span&gt;&amp;nbsp;files.&lt;/li&gt;
+&lt;li&gt;Renamed the launcher executable from &lt;code&gt;coral&lt;/code&gt; to &lt;code&gt;launcher&lt;/code&gt; to solve &lt;span class=&#8221;caps&#8221;&gt;PDB&lt;/span&gt; name clashes&nbsp;on&amp;nbsp;Windows.&lt;/li&gt;
+&lt;li&gt;The core library now gets a &amp;#8216;_debug&amp;#8217; suffix when built in&nbsp;debug&amp;nbsp;mode.&lt;/li&gt;
+&lt;li&gt;The &lt;code&gt;coral&lt;/code&gt; and &lt;code&gt;coralc&lt;/code&gt; executables are now simple C++ programs (instead of&nbsp;shell&amp;nbsp;scripts).&lt;/li&gt;
+&lt;li&gt;It is now possible to request the &lt;code&gt;coral&lt;/code&gt; executable to start the framework in either Debug or Release mode via the command-line&nbsp;option&amp;nbsp;&amp;#8217;&amp;#8211;mode&amp;#8217;.&lt;/li&gt;
+&lt;/ul&gt;&nbsp;&lt;/li&gt;
 &lt;/ul&gt;
 
 </content>
+    <summary type="html">Maintenance release with bug fixes and improved <span class="caps">SDK</span> usability.</summary>
   </entry>
 </feed>

@@ -1,9 +1,9 @@
-User-agent: *
+User-agent:&nbsp;*
 
-Allow: /
+Allow:&nbsp;/
 
-Disallow: /js/
-Disallow: /style/
-Disallow: /images/
+Disallow:&nbsp;/js/
+Disallow:&nbsp;/style/
+Disallow:&nbsp;/images/
 
-Sitemap: http://libcoral.org/sitemap.xml
+Sitemap:&nbsp;http://libcoral.org/sitemap.xml

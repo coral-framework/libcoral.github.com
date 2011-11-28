@@ -68,41 +68,41 @@
 <p>
 Download Links: <a href="https://github.com/libcoral/coral/tarball/v0.5.0">TAR</a>, <a href="https://github.com/libcoral/coral/zipball/v0.5.0">ZIP</a>
 </p>
-<p>This is the first public version of Coral. A <em>very early</em>, unstable beta release &#8212; although for practical purposes also a &#8220;feature-complete&#8221; release. The first stable version will be v1.0.0, which is still a few months away. Until then, we are going to work on the documentation, improve the usability, write more tests, improve the stabilty and robustness of the framework, write performance tests, profile and then improve the performance of the framework.</p>
+<p>This is the first public version of Coral. A <em>very early</em>, unstable beta release &#8212; although for practical purposes also a &#8220;feature-complete&#8221; release. The first stable version will be v1.0.0, which is still a few months away. Until then, we are going to work on the documentation, improve the usability, write more tests, improve the stabilty and robustness of the framework, write performance tests, profile and then improve the performance of the&nbsp;framework.</p>
 
-<h2>Changes since v0.4.x</h2>
-
-<ul>
-<li>New nomenclature for server/client interfaces:
+<h2>Changes since&nbsp;v0.4.x</h2>
 
 <ul>
-<li>Server (or &#8220;provided&#8221;) interfaces are now called &#8220;facets&#8221;.</li>
-<li>Client (or &#8220;required&#8221;) interfaces are now called &#8220;receptacles&#8221;.</li>
+<li>New nomenclature for server/client&nbsp;interfaces:
+
+<ul>
+<li>Server (or &#8220;provided&#8221;) interfaces are now called&nbsp;&#8220;facets&#8221;.</li>
+<li>Client (or &#8220;required&#8221;) interfaces are now called&nbsp;&#8220;receptacles&#8221;.</li>
 </ul>
 </li>
-<li>The CSL keyword for specifying receptacles changed from &#8220;requires&#8221; to &#8220;receives&#8221;.</li>
-<li>Many improvements to comments and error messages.</li>
-<li>The compiler cache file is now deleted in a &#8220;make clean&#8221;.</li>
-<li>The Lua module now features an embedded copy of LuaSocket, ported to Lua 5.2.</li>
-<li>New utility Lua package: &#8220;printData&#8221;, returns a function for printing data structures.</li>
-<li>Fixed a bug in the Lua module related to accessing a <code>co::Component</code> as a member attribute from Lua.</li>
-<li>Several tweaks and small fixes.</li>
-<li>Native module libraries are now loaded with global symbols sharing enabled.</li>
-<li>createModulePart() is now generated into the module&#8217;s namespace to solve a bug in module loading.</li>
-<li>The Coral compiler can now be used to generate documentation for a module (as a set of input files for Doxygen).</li>
-<li>Improved the parsing of documentation in CSL files.</li>
-<li>Forced AntLR to open all files in text mode, instead of binary (solves a problem with line endings).</li>
-<li>New CMake function <code>CORAL_GENERATE_DOX</code>, for running <code>coralc</code> to generate documentation.</li>
-<li>New CMake function <code>CORAL_BUILD_CSL_MODULE</code>, to build a module comprised only of CSL files.</li>
-<li>The internal CMake macros <code>CORAL_DEFAULT_TARGET_PROPERTIES</code> and <code>CORAL_MODULE_TARGET_PROPERTIES</code> are now public.</li>
-<li>Many general improvements to documentation.</li>
-<li>Enhanced the aesthetics and the organization of documentation in many ways.</li>
-<li>Removed the &#8220;intermediate&#8221; exception types <code>co::CoreException</code> and <code>co::UserException</code>. Now all CSL exceptions inherit directly from <code>co::Exception</code>.</li>
-<li>Complete revamp of the documentation, now generated using <code>coralc</code> and <code>nanoc</code>.</li>
+<li>The <span class="caps">CSL</span> keyword for specifying receptacles changed from &#8220;requires&#8221; to&nbsp;&#8220;receives&#8221;.</li>
+<li>Many improvements to comments and error&nbsp;messages.</li>
+<li>The compiler cache file is now deleted in a &#8220;make&nbsp;clean&#8221;.</li>
+<li>The Lua module now features an embedded copy of LuaSocket, ported to Lua&nbsp;<span class="caps">5.2.</span></li>
+<li>New utility Lua package: &#8220;printData&#8221;, returns a function for printing data&nbsp;structures.</li>
+<li>Fixed a bug in the Lua module related to accessing a <code>co::Component</code> as a member attribute from&nbsp;Lua.</li>
+<li>Several tweaks and small&nbsp;fixes.</li>
+<li>Native module libraries are now loaded with global symbols sharing&nbsp;enabled.</li>
+<li>createModulePart() is now generated into the module&#8217;s namespace to solve a bug in module&nbsp;loading.</li>
+<li>The Coral compiler can now be used to generate documentation for a module (as a set of input files for&nbsp;Doxygen).</li>
+<li>Improved the parsing of documentation in <span class="caps">CSL</span>&nbsp;files.</li>
+<li>Forced AntLR to open all files in text mode, instead of binary (solves a problem with line&nbsp;endings).</li>
+<li>New CMake function <code>CORAL_GENERATE_DOX</code>, for running <code>coralc</code> to generate&nbsp;documentation.</li>
+<li>New CMake function <code>CORAL_BUILD_CSL_MODULE</code>, to build a module comprised only of <span class="caps">CSL</span>&nbsp;files.</li>
+<li>The internal CMake macros <code>CORAL_DEFAULT_TARGET_PROPERTIES</code> and <code>CORAL_MODULE_TARGET_PROPERTIES</code> are now&nbsp;public.</li>
+<li>Many general improvements to&nbsp;documentation.</li>
+<li>Enhanced the aesthetics and the organization of documentation in many&nbsp;ways.</li>
+<li>Removed the &#8220;intermediate&#8221; exception types <code>co::CoreException</code> and <code>co::UserException</code>. Now all <span class="caps">CSL</span> exceptions inherit directly from&nbsp;<code>co::Exception</code>.</li>
+<li>Complete revamp of the documentation, now generated using <code>coralc</code> and&nbsp;<code>nanoc</code>.</li>
 </ul>
 
 
-<p class='tags'>Tagged as: <a href="http://libcoral.org/tags/release" rel="tag">release</a>, <a href="http://libcoral.org/tags/coral" rel="tag">coral</a></p>
+<p class='tags'>Tagged as: <a href="../../tags/release" rel="tag">release</a>, <a href="../../tags/coral" rel="tag">coral</a></p>
 </div>
 
 </div>

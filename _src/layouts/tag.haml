@@ -1,7 +1,6 @@
-- @item[:title] = "Tag: " + @item[:title]
 - render 'sidetags' do
-	%h1 #{@item[:title]}
-	%p This page lists all articles tagged as "#{@item[:tag]}":
+	%h1 Tag: #{@item[:title]}
+	%p This page lists all articles tagged with "#{@item[:tag]}":
 	%ul
 		- sorted_articles_with_tag( @item[:tag] ).each do |article|
 			%li

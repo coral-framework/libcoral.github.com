@@ -1,7 +1,7 @@
 - limit = 30 if not limit
 - numShown = [limit, articles.length].min()
 - articles.each_with_index do |article, idx|
-	- if idx >= numShown then break
+	- if idx >= numShown then break end
 	#article
 		%h1= link_to( article[:title], article )
 		= article_meta( article )

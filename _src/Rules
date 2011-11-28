@@ -82,15 +82,20 @@ compile '*' do
 				filter :erb
 		end
 
+		filter :typogruby
+
 		# use layouts for items mapped to .html or with layout specified in meta
-		item[:layout] = 'none' unless item[:layout] || File.extname( route_path( item ) ) == '.html'
-		unless item[:layout] == 'none'
-			item[:layout] = 'article' if item[:kind] == 'article'
-			layout item[:layout] || 'default'
+		hasLayout = ( item[:layout] || File.extname( route_path( item ) ) == '.html' )
+		chosenLayout = hasLayout ? item[:layout] : 'none'
+		unless chosenLayout == 'none'
+			if item[:kind] == 'article' then
+				chosenLayout = 'article'
+			end
+			layout chosenLayout || 'default'
 			filter :relativize_paths, :type => :html
 		end
 
-		filter :rubypants
+		#filter :rubypants
 	end
 end
 

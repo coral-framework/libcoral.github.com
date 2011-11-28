@@ -68,28 +68,28 @@
 <p>
 Download Links: <a href="https://github.com/libcoral/coral/tarball/v0.6.1">TAR</a>, <a href="https://github.com/libcoral/coral/zipball/v0.6.1">ZIP</a>
 </p>
-<p>Updated to Lua 5.2 (beta) and fixed a bug in the cleanup sequence of Lua modules.</p>
+<p>Updated to Lua <span class="caps">5.2</span> (beta) and fixed a bug in the cleanup sequence of Lua&nbsp;modules.</p>
 
-<h2>Changes since v0.6.0</h2>
+<h2>Changes since&nbsp;v0.6.0</h2>
 
-<h3>Coral Library (libcoral)</h3>
+<h3>Coral Library&nbsp;(libcoral)</h3>
 
 <ul>
-<li>Improved the error message for when a type has no reflector even though its module is loaded (to report the module state).</li>
+<li>Improved the error message for when a type has no reflector even though its module is loaded (to report the module&nbsp;state).</li>
 </ul>
 
 
-<h3>Lua Module (modules/lua)</h3>
+<h3>Lua Module&nbsp;(modules/lua)</h3>
 
 <ul>
-<li>Updated the Lua core to version 5.2 beta.</li>
-<li>Fixed a bug where the Lua GC was triggered too late in the modules&#8217; unloading sequence, causing problems with missing reflectors.</li>
-<li>Removed support for handling the <code>dispose()</code> event from a Lua ModulePart. Support for this event was troublesome as it caused mutual dependency problems in the system teardown sequence. Any cleanup that was done in the <code>dispose()</code> event can be moved to the <code>disintegrate()</code> event, or simply rely on the Lua garbage collector.</li>
-<li>The Lua CG now performs a full collection cycle at the end of the <code>disintegrate()</code> phase.</li>
+<li>Updated the Lua core to version <span class="caps">5.2</span>&nbsp;beta.</li>
+<li>Fixed a bug where the Lua <span class="caps">GC</span> was triggered too late in the modules&#8217; unloading sequence, causing problems with missing&nbsp;reflectors.</li>
+<li>Removed support for handling the <code>dispose()</code> event from a Lua ModulePart. Support for this event was troublesome as it caused mutual dependency problems in the system teardown sequence. Any cleanup that was done in the <code>dispose()</code> event can be moved to the <code>disintegrate()</code> event, or simply rely on the Lua garbage&nbsp;collector.</li>
+<li>The Lua <span class="caps">CG</span> now performs a full collection cycle at the end of the <code>disintegrate()</code>&nbsp;phase.</li>
 </ul>
 
 
-<p class='tags'>Tagged as: <a href="http://libcoral.org/tags/release" rel="tag">release</a>, <a href="http://libcoral.org/tags/coral" rel="tag">coral</a></p>
+<p class='tags'>Tagged as: <a href="../../tags/release" rel="tag">release</a>, <a href="../../tags/coral" rel="tag">coral</a></p>
 </div>
 
 </div>

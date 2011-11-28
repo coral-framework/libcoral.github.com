@@ -68,38 +68,38 @@
 <p>
 Download Links: <a href="https://github.com/libcoral/coral/tarball/v0.5.1">TAR</a>, <a href="https://github.com/libcoral/coral/zipball/v0.5.1">ZIP</a>
 </p>
-<p>This is a maintenance release. It fixes bugs and some SDK usability issues found in the original release.</p>
+<p>This is a maintenance release. It fixes bugs and some <span class="caps">SDK</span> usability issues found in the original&nbsp;release.</p>
 
-<h2>Changes since v0.5.0</h2>
-
-<ul>
-<li>Updated Lua to version 5.2 alpha.</li>
-<li>Updated mapping rules: output array parameters are now passed by reference instead of pointers, and cannot be null.</li>
-<li>The CMake target &#8216;docs&#8217; now also compiles the general documentation (requires nanoc).</li>
-<li>Improvements for the API documentation (cosmetic changes, syntax highlighting for Lua code, etc.)</li>
-<li>Many small bug fixes, specially on Windows.</li>
-<li>Fixed handling of Windows-style (CRLF) line-endings in CSL files.</li>
-<li><code>RelWithDebInfo</code> builds are now considered &#8216;release&#8217; builds, instead of &#8216;debug&#8217;.</li>
-<li>Fix for a segfault related to lazy-loading a service from an invalid module.</li>
-<li>New template function <code>co::Any::createComplexValue&lt;T&gt;()</code>.</li>
-<li>Fixed bugs in <code>co::Any</code>&#8217;s temporary objects API.</li>
-<li>Fixed potential (although unconfirmed) uninitialized memory problems in the <code>co::Any</code> constructors, detected by valgrind when running with optimizations.</li>
-<li>Improved SDK packaging:
+<h2>Changes since&nbsp;v0.5.0</h2>
 
 <ul>
-<li>Universal support for simultaneous Debug/Release installs of the SDK in the same <code>CORAL_ROOT</code>.</li>
-<li>A safe <code>CMAKE_INSTALL_PREFIX</code> is now enforced on all platforms.</li>
-<li>The Windows Debug package now includes PDB files.</li>
-<li>Renamed the launcher executable from <code>coral</code> to <code>launcher</code> to solve PDB name clashes on Windows.</li>
-<li>The core library now gets a &#8216;_debug&#8217; suffix when built in debug mode.</li>
-<li>The <code>coral</code> and <code>coralc</code> executables are now simple C++ programs (instead of shell scripts).</li>
-<li>It is now possible to request the <code>coral</code> executable to start the framework in either Debug or Release mode via the command-line option &#8216;&#8211;mode&#8217;.</li>
+<li>Updated Lua to version <span class="caps">5.2</span>&nbsp;alpha.</li>
+<li>Updated mapping rules: output array parameters are now passed by reference instead of pointers, and cannot be&nbsp;null.</li>
+<li>The CMake target &#8216;docs&#8217; now also compiles the general documentation (requires&nbsp;nanoc).</li>
+<li>Improvements for the <span class="caps">API</span> documentation (cosmetic changes, syntax highlighting for Lua code,&nbsp;etc.)</li>
+<li>Many small bug fixes, specially on&nbsp;Windows.</li>
+<li>Fixed handling of Windows-style (CRLF) line-endings in <span class="caps">CSL</span>&nbsp;files.</li>
+<li><code>RelWithDebInfo</code> builds are now considered &#8216;release&#8217; builds, instead of&nbsp;&#8216;debug&#8217;.</li>
+<li>Fix for a segfault related to lazy-loading a service from an invalid&nbsp;module.</li>
+<li>New template function&nbsp;<code>co::Any::createComplexValue&lt;T&gt;()</code>.</li>
+<li>Fixed bugs in <code>co::Any</code>&#8217;s temporary objects&nbsp;<span class="caps">API.</span></li>
+<li>Fixed potential (although unconfirmed) uninitialized memory problems in the <code>co::Any</code> constructors, detected by valgrind when running with&nbsp;optimizations.</li>
+<li>Improved <span class="caps">SDK</span>&nbsp;packaging:
+
+<ul>
+<li>Universal support for simultaneous Debug/Release installs of the <span class="caps">SDK</span> in the same&nbsp;<code>CORAL_ROOT</code>.</li>
+<li>A safe <code>CMAKE_INSTALL_PREFIX</code> is now enforced on all&nbsp;platforms.</li>
+<li>The Windows Debug package now includes <span class="caps">PDB</span>&nbsp;files.</li>
+<li>Renamed the launcher executable from <code>coral</code> to <code>launcher</code> to solve <span class="caps">PDB</span> name clashes on&nbsp;Windows.</li>
+<li>The core library now gets a &#8216;_debug&#8217; suffix when built in debug&nbsp;mode.</li>
+<li>The <code>coral</code> and <code>coralc</code> executables are now simple C++ programs (instead of shell&nbsp;scripts).</li>
+<li>It is now possible to request the <code>coral</code> executable to start the framework in either Debug or Release mode via the command-line option&nbsp;&#8217;&#8211;mode&#8217;.</li>
 </ul>
 </li>
 </ul>
 
 
-<p class='tags'>Tagged as: <a href="http://libcoral.org/tags/release" rel="tag">release</a>, <a href="http://libcoral.org/tags/coral" rel="tag">coral</a></p>
+<p class='tags'>Tagged as: <a href="../../tags/release" rel="tag">release</a>, <a href="../../tags/coral" rel="tag">coral</a></p>
 </div>
 
 </div>

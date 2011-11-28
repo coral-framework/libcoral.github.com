@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.google.com/schemas/sitemap/0.84">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>http://libcoral.org/news/2010/11/16/coral-website-launched.html</loc>
     <lastmod>2010-11-16</lastmod>
@@ -43,6 +43,10 @@
   <url>
     <loc>http://libcoral.org/tags/website/</loc>
     <lastmod>2010-11-16</lastmod>
+  </url>
+  <url>
+    <loc>http://libcoral.org/releases/coral/0_7_0.html</loc>
+    <lastmod>2011-11-28</lastmod>
   </url>
   <url>
     <loc>http://libcoral.org/releases/coral/0_6_1.html</loc>

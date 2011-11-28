@@ -63,7 +63,7 @@ end
 
 # Helper function to generate the 'tags' part of an article
 def article_tags( article )
-	"<p class='tags'>Tagged as: " + tags_for( article, :base_url => @config[:base_url] + '/tags/' ) + "</p>"
+	"<p class='tags'>Tagged as: " + tags_for( article, :base_url => '/tags/' ) + "</p>"
 end
 
 # Helper function to generate download links for a release

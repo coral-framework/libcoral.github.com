@@ -14,5 +14,5 @@ $blueprint-font-size: 13px;
 $blueprint-font-family: $font-family-verdana;
 
 @mixin gradient-blue {
-	@include linear-gradient( color-stops( #1F62BF, #005493 ) );
+	@include background-image( linear-gradient( #1f62bf, #005493 ) );
 }
