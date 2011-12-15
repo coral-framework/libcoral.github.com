@@ -2,13 +2,41 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://libcoral.org/</id>
   <title>Coral Releases Feed</title>
-  <updated>2011-11-28T02:00:00Z</updated>
+  <updated>2011-12-14T02:00:00Z</updated>
   <link rel="alternate" href="http://libcoral.org/"/>
   <link rel="self" href="http://libcoral.org/releases/atom.xml"/>
   <author>
     <name>Coral</name>
     <uri>http://libcoral.org/releases/</uri>
   </author>
+  <entry>
+    <id>tag:libcoral.org,2011-12-14:/releases/coral/0_7_1.html</id>
+    <title type="html">Coral <span class="caps">0.7.1</span> Released</title>
+    <published>2011-12-14T02:00:00Z</published>
+    <updated>2011-12-14T02:00:00Z</updated>
+    <link rel="alternate" href="http://libcoral.org/releases/coral/0_7_1.html"/>
+    <content type="html">&lt;p&gt;This release contains only minor fixes and&nbsp;usability&amp;nbsp;improvements.&lt;/p&gt;
+
+&lt;h2&gt;Changes&nbsp;since&amp;nbsp;v0.7.0&lt;/h2&gt;
+
+&lt;h3&gt;Coral&nbsp;Library&amp;nbsp;(libcoral)&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Changed &lt;code&gt;co::int32&lt;/code&gt; from &lt;code&gt;long&lt;/code&gt; to &lt;code&gt;int&lt;/code&gt; on x86_32 in order to make all type-traits&nbsp;more&amp;nbsp;portable.&lt;/li&gt;
+&lt;li&gt;New header &lt;code&gt;co/reserved/RefCounted.h&lt;/code&gt; contains a general-purpose base class for reference-counted objects that can be reused in&nbsp;Coral&amp;nbsp;modules.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;CMake&nbsp;Package&amp;nbsp;(FindCoral.cmake)&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Macro &lt;code&gt;CORAL_TARGET( targetName )&lt;/code&gt; now automatically links the target with the&nbsp;Coral&amp;nbsp;library.&lt;/li&gt;
+&lt;li&gt;CMake minimum version bumped to&amp;nbsp;&lt;span&nbsp;class=&#8221;caps&#8221;&gt;2.8.5.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+    <summary type="html">Minor fixes and usability improvements.</summary>
+  </entry>
   <entry>
     <id>tag:libcoral.org,2011-11-28:/releases/coral/0_7_0.html</id>
     <title type="html">Coral <span class="caps">0.7</span> Released</title>
@@ -372,43 +400,5 @@
 
 </content>
     <summary type="html">First major, architecturally stable beta release.</summary>
-  </entry>
-  <entry>
-    <id>tag:libcoral.org,2011-01-10:/releases/coral/0_5_1.html</id>
-    <title type="html">Coral <span class="caps">0.5.1</span> Released</title>
-    <published>2011-01-10T02:00:00Z</published>
-    <updated>2011-01-10T02:00:00Z</updated>
-    <link rel="alternate" href="http://libcoral.org/releases/coral/0_5_1.html"/>
-    <content type="html">&lt;p&gt;This is a maintenance release. It fixes bugs and some &lt;span class=&#8221;caps&#8221;&gt;SDK&lt;/span&gt; usability issues found in the&nbsp;original&amp;nbsp;release.&lt;/p&gt;
-
-&lt;h2&gt;Changes&nbsp;since&amp;nbsp;v0.5.0&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Updated Lua to version &lt;span&nbsp;class=&#8221;caps&#8221;&gt;5.2&lt;/span&gt;&amp;nbsp;alpha.&lt;/li&gt;
-&lt;li&gt;Updated mapping rules: output array parameters are now passed by reference instead of pointers, and cannot&nbsp;be&amp;nbsp;null.&lt;/li&gt;
-&lt;li&gt;The CMake target &amp;#8216;docs&amp;#8217; now also compiles the general documentation&nbsp;(requires&amp;nbsp;nanoc).&lt;/li&gt;
-&lt;li&gt;Improvements for the &lt;span class=&#8221;caps&#8221;&gt;API&lt;/span&gt; documentation (cosmetic changes, syntax highlighting for Lua&nbsp;code,&amp;nbsp;etc.)&lt;/li&gt;
-&lt;li&gt;Many small bug fixes, specially&nbsp;on&amp;nbsp;Windows.&lt;/li&gt;
-&lt;li&gt;Fixed handling of Windows-style (CRLF) line-endings in &lt;span&nbsp;class=&#8221;caps&#8221;&gt;CSL&lt;/span&gt;&amp;nbsp;files.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;RelWithDebInfo&lt;/code&gt; builds are now considered &amp;#8216;release&amp;#8217; builds, instead&nbsp;of&amp;nbsp;&amp;#8216;debug&amp;#8217;.&lt;/li&gt;
-&lt;li&gt;Fix for a segfault related to lazy-loading a service from an&nbsp;invalid&amp;nbsp;module.&lt;/li&gt;
-&lt;li&gt;New template&nbsp;function&amp;nbsp;&lt;code&gt;co::Any::createComplexValue&amp;lt;T&amp;gt;()&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Fixed bugs in &lt;code&gt;co::Any&lt;/code&gt;&amp;#8217;s temporary objects&amp;nbsp;&lt;span&nbsp;class=&#8221;caps&#8221;&gt;API.&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;Fixed potential (although unconfirmed) uninitialized memory problems in the &lt;code&gt;co::Any&lt;/code&gt; constructors, detected by valgrind when running&nbsp;with&amp;nbsp;optimizations.&lt;/li&gt;
-&lt;li&gt;Improved &lt;span&nbsp;class=&#8221;caps&#8221;&gt;SDK&lt;/span&gt;&amp;nbsp;packaging:
-
-&lt;ul&gt;
-&lt;li&gt;Universal support for simultaneous Debug/Release installs of the &lt;span class=&#8221;caps&#8221;&gt;SDK&lt;/span&gt; in the&nbsp;same&amp;nbsp;&lt;code&gt;CORAL_ROOT&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;A safe &lt;code&gt;CMAKE_INSTALL_PREFIX&lt;/code&gt; is now enforced on&nbsp;all&amp;nbsp;platforms.&lt;/li&gt;
-&lt;li&gt;The Windows Debug package now includes &lt;span&nbsp;class=&#8221;caps&#8221;&gt;PDB&lt;/span&gt;&amp;nbsp;files.&lt;/li&gt;
-&lt;li&gt;Renamed the launcher executable from &lt;code&gt;coral&lt;/code&gt; to &lt;code&gt;launcher&lt;/code&gt; to solve &lt;span class=&#8221;caps&#8221;&gt;PDB&lt;/span&gt; name clashes&nbsp;on&amp;nbsp;Windows.&lt;/li&gt;
-&lt;li&gt;The core library now gets a &amp;#8216;_debug&amp;#8217; suffix when built in&nbsp;debug&amp;nbsp;mode.&lt;/li&gt;
-&lt;li&gt;The &lt;code&gt;coral&lt;/code&gt; and &lt;code&gt;coralc&lt;/code&gt; executables are now simple C++ programs (instead of&nbsp;shell&amp;nbsp;scripts).&lt;/li&gt;
-&lt;li&gt;It is now possible to request the &lt;code&gt;coral&lt;/code&gt; executable to start the framework in either Debug or Release mode via the command-line&nbsp;option&amp;nbsp;&amp;#8217;&amp;#8211;mode&amp;#8217;.&lt;/li&gt;
-&lt;/ul&gt;&nbsp;&lt;/li&gt;
-&lt;/ul&gt;
-
-</content>
-    <summary type="html">Maintenance release with bug fixes and improved <span class="caps">SDK</span> usability.</summary>
   </entry>
 </feed>
